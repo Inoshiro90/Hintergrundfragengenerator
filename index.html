@@ -156,12 +156,14 @@
    <body>
 	<h1>Hintergrundgeschichte</h1>
 	<p>Dieser Generator generiert Fragen für die Hintergrundgeschichte eines Charakters</p>
+	<div id="thema">
 	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxVergangenheit" class="thema-checkbox" checked> Vergangenheit</label><br>
 	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxGegenwart" class="thema-checkbox" checked> Gegenwart</label><br>
 	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxGefährten" class="thema-checkbox" checked> Gefährten</label><br>
 	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxTräume" class="thema-checkbox" checked> Träume</label><br>
 	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxWelt" class="thema-checkbox" checked> Welt</label><br>
 	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxHypothetisches" class="thema-checkbox" checked> Hypothetisches</label><br>
+	</div>
 	<button class="inCollapsible" id="btnSelectAllThema">Alle auswählen</button>
 	<button class="inCollapsible" id="btnDeselectAllThema">Alle abwählen</button>
 	<div class="buttons">
@@ -294,7 +296,58 @@
 				
 		//Bestimmt die Farbe des Einbandes
 		function generateFrageThemaVergangenheit() {
-			const themaVergangenheit = ["Wie hast Du Deine wichtigste Fähigkeit gelernt? Wer hat sie dir beigebracht? Warum ist diese Fähigkeit so wichtig?", "Wer ist der schwierigste Gegner, dem du je begegnet bist? Was hast du aus der/den Begegnung(en) mit ihm gelernt?", "Was war der schlimmste Fehler, den du als Abenteurer gemacht hast? Beeinflusst er dich heute noch?", "Was war das beste Essen, das du je gegessen hast? Mit wem hast du sie geteilt? Was hat es unvergesslich gemacht?", "Welche deiner Fähigkeiten hattest du am schwersten zu meistern? Wie und warum hast du während des Lernprozesses an dir gezweifelt? Was hat am Ende den Ausschlag gegeben?", "Welche deiner Narben findest du am coolsten? Welche Geschichte steckt dahinter?", "Wo hast du am längsten gewohnt? Was hat dich so lange dort gehalten? Würdest du gerne dorthin zurückkehren?", "Was ist die wichtigste Lektion, die du von einem guten Freund gelernt hast? Hast du diese Lektion in einem einzigen Ereignis oder über die Zeit gelernt?", "Was ist die wichtigste Lektion, die du von einem Familienmitglied gelernt hast? Hast du diese Lektion in einem einzigen Ereignis oder über die Zeit gelernt?", "Gibt es Erinnerungen an deine Vergangenheit, die du gerne loslassen würdest? Warum fällt dir das schwer?", "Was ist das schönste Kompliment, das du je bekommen hast? Von wem hast du es bekommen?", "Was war die schlimmste Beleidigung, die du je erlebt hast? Wie hast du darauf reagiert?", "Was war der schlimmste Job, den du je hattest? Was machte ihn so schlimm? Was hast du daraus gelernt?", "Was war ein Fehler, den du gemacht hast und der sich am Ende als vorteilhaft für dich herausgestellt hat? Hat dieser Fehler die Art und Weise verändert, wie du heute mit Problemen umgehst?", "Wer außerhalb deiner unmittelbaren Familie und deines Umfelds hatte den größten positiven Einfluss auf dein Leben? Wissen sie, dass sie dich beeinflusst haben?", "Wer war der Außenseiter in deiner Familie? Wie war dein Verhältnis zu ihm? Wenn du es warst, wer stand dir in deiner Familie am nächsten?", "Woran denkst du, wenn du das Wort \"Heimat\" hörst? Glaubst du, dass du jemals an diesen Ort zurückkehren wirst oder dass du diesen Ort jemals erreichen wirst? Und warum?", "Wann hast du zum letzten Mal vor jemandem geweint? Warum hast du geweint? Wie hat die Person reagiert?", "Was war das letzte Mal, dass du etwas ausprobiert hast, das dir unerwartet gut gefallen hat? Hat es dir geholfen, etwas anderes auszuprobieren?", "Welches Geheimnis hast du, das dir bisher zu peinlich war, um es zu erzählen? Ist es dir immer noch peinlich?", "Was ist die Veränderung, die du in deinem Leben erreicht hast und auf die du stolz bist? Wie wirkt sich diese Veränderung auf dein tägliches Leben aus?", "Was war dein erster Liebeskummer? Mit wem war es? Hast du schon einmal jemandem das Herz gebrochen?", "Wann bist du das letzte Mal betrogen oder hintergangen worden? Was hast du aus dieser negativen Erfahrung gelernt?", "Welcher Akt der Großzügigkeit hatte den größten Einfluss auf dein Leben? Hast du sie weitergegeben, und wenn nicht, wirst du es tun?", "Welches Verbrechen hast du begangen und hatte es Konsequenzen für dich?", "Was ist außer deinem Handwerkszeug ein persönlicher Gegenstand, den du bei dir trägst und der dir etwas bedeutet? Woher hast du ihn?", "Welche Person oder Gruppe hat dich zuerst dazu inspiriert, Abenteurer zu werden? Was war es an ihren Geschichten oder Taten, das dich fasziniert hat?", "Gibt es ein Artefakt oder einen Gegenstand aus deiner Vergangenheit, den du verloren hast und den du verzweifelt wiederfinden möchtest? Welche Bedeutung hat dieser Gegenstand für dich?", "Hast du jemals jemanden gerettet, der dir zuvor das Leben gerettet hat? Wie hat diese Verbindung eure Beziehung beeinflusst?", "Wie bist du zu deinem ersten Abenteuer gekommen? War es eine bewusste Entscheidung oder wurdest du hineingezogen?", "Gibt es eine Person aus deiner Vergangenheit, die du gerne wiedersehen würdest? Warum hast du sie verloren und was würdest du sagen, wenn du die Chance hättest?", "Was war der größte Konflikt, den du mit deinen Eltern oder Vormündern hattest? Hat sich eure Beziehung seitdem verbessert oder verschlechtert?", "Welche Lektion hast du aus einem tragischen Ereignis in deiner Vergangenheit gelernt? Wie hat es deine Perspektive auf das Leben verändert?", "Welche Fähigkeit oder Eigenschaft deiner Familie oder deiner Herkunft schätzt du am meisten? Wie hat sie dich geprägt?", "Hast du jemals jemandem, den du bewundert hast, nachgeeifert? Wie hat das deine Entwicklung beeinflusst?", "Welches war dein größter Sieg als Kind oder Jugendlicher? Wie hat er dich motiviert, Abenteurer zu werden?", "Gab es eine Zeit, in der du dich in einem Kampf oder einer gefährlichen Situation völlig überfordert gefühlt hast? Wie hast du dich daraus befreit?", "Welches ist das wertvollste Geschenk, das du je erhalten hast? Hat es eine symbolische Bedeutung für dich?", "Warst du jemals in einer romantischen Beziehung, die tragisch geendet hat? Wie hat das deine Einstellung zur Liebe beeinflusst?", "Gibt es eine bestimmte Person aus deiner Vergangenheit, die du als Mentor betrachtest? Was hast du von ihr gelernt?", "Wurde dir jemals eine Gelegenheit oder eine Belohnung verwehrt, die du wirklich wolltest? Wie bist du damit umgegangen?", "Welches war dein liebster Rückzugsort, wenn du dich zurückziehen oder nachdenken wolltest?", "Hast du eine Phobie oder eine tiefe Angst, die auf eine bestimmte Erfahrung in deiner Vergangenheit zurückzuführen ist?", "Gab es eine Zeit, in der du für etwas beschuldigt wurdest, das du nicht getan hast? Wie hast du versucht, deine Unschuld zu beweisen?", "Welche Tradition oder welches Ritual hast du als Kind am meisten gefürchtet und warum?", "Welche war die gefährlichste Mutprobe, der du als Jugendlicher begegnet bist? Hast du sie gemeistert oder hattest du Hilfe?", "Welche Erinnerung an deinen ersten Tag als Abenteurer ist dir am lebhaftesten im Gedächtnis geblieben? Was hast du dabei empfunden?", "Hast du jemals in einer Gruppe oder Clique in deiner Jugend mitgemacht? Wie hast du dich darin eingefügt oder wie bist du herausgestochen?", "Welches war dein Lieblingsspiel oder deine Lieblingsbeschäftigung als Kind? Hat es eine Parallele zu deinem jetzigen Leben als Abenteurer?", "Hast du jemals eine enge Freundschaft verloren? Wie ist das passiert und wie gehst du mit diesem Verlust um?"];
+			const themaVergangenheit = [
+			"Wie hast Du Deine wichtigste Fähigkeit gelernt? Wer hat sie dir beigebracht? Warum ist diese Fähigkeit so wichtig?",
+			"Wer ist der schwierigste Gegner, dem du je begegnet bist? Was hast du aus der/den Begegnung(en) mit ihm gelernt?",
+			"Was war der schlimmste Fehler, den du als Abenteurer gemacht hast? Beeinflusst er dich heute noch?",
+			"Was war das beste Essen, das du je gegessen hast? Mit wem hast du sie geteilt? Was hat es unvergesslich gemacht?",
+			"Welche deiner Fähigkeiten hattest du am schwersten zu meistern? Wie und warum hast du während des Lernprozesses an dir gezweifelt? Was hat am Ende den Ausschlag gegeben?",
+			"Welche deiner Narben findest du am coolsten? Welche Geschichte steckt dahinter?",
+			"Wo hast du am längsten gewohnt? Was hat dich so lange dort gehalten? Würdest du gerne dorthin zurückkehren?",
+			"Was ist die wichtigste Lektion, die du von einem guten Freund gelernt hast? Hast du diese Lektion in einem einzigen Ereignis oder über die Zeit gelernt?",
+			"Was ist die wichtigste Lektion, die du von einem Familienmitglied gelernt hast? Hast du diese Lektion in einem einzigen Ereignis oder über die Zeit gelernt?",
+			"Gibt es Erinnerungen an deine Vergangenheit, die du gerne loslassen würdest? Warum fällt dir das schwer?",
+			"Was ist das schönste Kompliment, das du je bekommen hast? Von wem hast du es bekommen?",
+			"Was war die schlimmste Beleidigung, die du je erlebt hast? Wie hast du darauf reagiert?",
+			"Was war der schlimmste Job, den du je hattest? Was machte ihn so schlimm? Was hast du daraus gelernt?",
+			"Was war ein Fehler, den du gemacht hast und der sich am Ende als vorteilhaft für dich herausgestellt hat? Hat dieser Fehler die Art und Weise verändert, wie du heute mit Problemen umgehst?",
+			"Wer außerhalb deiner unmittelbaren Familie und deines Umfelds hatte den größten positiven Einfluss auf dein Leben? Wissen sie, dass sie dich beeinflusst haben?",
+			"Wer war der Außenseiter in deiner Familie? Wie war dein Verhältnis zu ihm? Wenn du es warst, wer stand dir in deiner Familie am nächsten?",
+			"Woran denkst du, wenn du das Wort Heimat hörst? Glaubst du, dass du jemals an diesen Ort zurückkehren wirst oder dass du diesen Ort jemals erreichen wirst? Und warum?",
+			"Wann hast du zum letzten Mal vor jemandem geweint? Warum hast du geweint? Wie hat die Person reagiert?",
+			"Was war das letzte Mal, dass du etwas ausprobiert hast, das dir unerwartet gut gefallen hat? Hat es dir geholfen, etwas anderes auszuprobieren?",
+			"Welches Geheimnis hast du, das dir bisher zu peinlich war, um es zu erzählen? Ist es dir immer noch peinlich?",
+			"Was ist die Veränderung, die du in deinem Leben erreicht hast und auf die du stolz bist? Wie wirkt sich diese Veränderung auf dein tägliches Leben aus?",
+			"Was war dein erster Liebeskummer? Mit wem war es? Hast du schon einmal jemandem das Herz gebrochen?",
+			"Wann bist du das letzte Mal betrogen oder hintergangen worden? Was hast du aus dieser negativen Erfahrung gelernt?",
+			"Welcher Akt der Großzügigkeit hatte den größten Einfluss auf dein Leben? Hast du sie weitergegeben, und wenn nicht, wirst du es tun?",
+			"Welches Verbrechen hast du begangen und hatte es Konsequenzen für dich?",
+			"Was ist außer deinem Handwerkszeug ein persönlicher Gegenstand, den du bei dir trägst und der dir etwas bedeutet? Woher hast du ihn?",
+			"Welche Person oder Gruppe hat dich zuerst dazu inspiriert, Abenteurer zu werden? Was war es an ihren Geschichten oder Taten, das dich fasziniert hat?",
+			"Gibt es ein Artefakt oder einen Gegenstand aus deiner Vergangenheit, den du verloren hast und den du verzweifelt wiederfinden möchtest? Welche Bedeutung hat dieser Gegenstand für dich?",
+			"Hast du jemals jemanden gerettet, der dir zuvor das Leben gerettet hat? Wie hat diese Verbindung eure Beziehung beeinflusst?",
+			"Wie bist du zu deinem ersten Abenteuer gekommen? War es eine bewusste Entscheidung oder wurdest du hineingezogen?",
+			"Gibt es eine Person aus deiner Vergangenheit, die du gerne wiedersehen würdest? Warum hast du sie verloren und was würdest du sagen, wenn du die Chance hättest?",
+			"Was war der größte Konflikt, den du mit deinen Eltern oder Vormündern hattest? Hat sich eure Beziehung seitdem verbessert oder verschlechtert?",
+			"Welche Lektion hast du aus einem tragischen Ereignis in deiner Vergangenheit gelernt? Wie hat es deine Perspektive auf das Leben verändert?",
+			"Welche Fähigkeit oder Eigenschaft deiner Familie oder deiner Herkunft schätzt du am meisten? Wie hat sie dich geprägt?",
+			"Hast du jemals jemandem, den du bewundert hast, nachgeeifert? Wie hat das deine Entwicklung beeinflusst?",
+			"Welches war dein größter Sieg als Kind oder Jugendlicher? Wie hat er dich motiviert, Abenteurer zu werden?",
+			"Gab es eine Zeit, in der du dich in einem Kampf oder einer gefährlichen Situation völlig überfordert gefühlt hast? Wie hast du dich daraus befreit?",
+			"Welches ist das wertvollste Geschenk, das du je erhalten hast? Hat es eine symbolische Bedeutung für dich?",
+			"Warst du jemals in einer romantischen Beziehung, die tragisch geendet hat? Wie hat das deine Einstellung zur Liebe beeinflusst?",
+			"Gibt es eine bestimmte Person aus deiner Vergangenheit, die du als Mentor betrachtest? Was hast du von ihr gelernt?",
+			"Wurde dir jemals eine Gelegenheit oder eine Belohnung verwehrt, die du wirklich wolltest? Wie bist du damit umgegangen?",
+			"Welches war dein liebster Rückzugsort, wenn du dich zurückziehen oder nachdenken wolltest?",
+			"Hast du eine Phobie oder eine tiefe Angst, die auf eine bestimmte Erfahrung in deiner Vergangenheit zurückzuführen ist?",
+			"Gab es eine Zeit, in der du für etwas beschuldigt wurdest, das du nicht getan hast? Wie hast du versucht, deine Unschuld zu beweisen?",
+			"Welche Tradition oder welches Ritual hast du als Kind am meisten gefürchtet und warum?",
+			"Welche war die gefährlichste Mutprobe, der du als Jugendlicher begegnet bist? Hast du sie gemeistert oder hattest du Hilfe?",
+			"Welche Erinnerung an deinen ersten Tag als Abenteurer ist dir am lebhaftesten im Gedächtnis geblieben? Was hast du dabei empfunden?",
+			"Hast du jemals in einer Gruppe oder Clique in deiner Jugend mitgemacht? Wie hast du dich darin eingefügt oder wie bist du herausgestochen?",
+			"Welches war dein Lieblingsspiel oder deine Lieblingsbeschäftigung als Kind? Hat es eine Parallele zu deinem jetzigen Leben als Abenteurer?",
+			"Hast du jemals eine enge Freundschaft verloren? Wie ist das passiert und wie gehst du mit diesem Verlust um?",
+			];
 		
 			const randomIndex = Math.floor(Math.random() * themaVergangenheit.length);
 			const selectedThemaVergangenheit = themaVergangenheit[randomIndex];
@@ -303,27 +356,352 @@
 		}
 							
 		function generateFrageThemaGegenwart() {
-			const themaGegenwart = ["Was ist deiner Meinung nach dein nutzlosestes Talent? Warum ist es deiner Meinung nach nutzlos?", "Welche Befriedigung, abgesehen von Reichtum und Ruhm, hast du im Leben eines Abenteurers gefunden? Welche Art von Belohnung würdest du dir öfter wünschen?", "Auf welche Aspekte deines Alltags freust du dich am meisten? Warum gefallen dir diese Aspekte so gut?", "Was ist dein Lieblingsärgernis, das dich sofort ärgert? Wie reagierst du darauf? Wie würdest du lieber reagieren?", "Glaubst du eher an das Schicksal oder an den freien Willen und warum?", "Siehst du dich selbst als Optimisten oder Pessimisten? Wie beeinflusst dich diese Einstellung, wenn du Risiken eingehst?", "Was gibt es an dir, von dem du sicher bist, dass es sich nie ändern wird? Hast du es schon einmal auf die Probe gestellt?", "Wirst du am Ende deines Lebens eher stolz auf deine Leistungen oder auf deine Integrität sein? Was lässt dich so denken?", "Welchen Aberglauben hast du? Fühlst du dich verpflichtet, ihn anderen aufzuzwingen?", "Was ist deiner Meinung nach wertvoller? Wissenschaft oder Kunst? Und warum? Beschreibe eine Welt ohne deine Wahl in ihr.", "Was ist für dich wichtiger: Rache oder Vergebung? Wie wird dein Alltag von diesem Wert beeinflusst?", "Welche Kunstform spricht dich am meisten an? Wie genießt du sie am liebsten, wenn du sie erlebst?", "Was ist ein wichtiger Gegenstand in deinem Besitz, der neu ist?", "Was ist ein wichtiger Gegenstand in deinem Besitz, der dir vererbt wurde?", "Was ist ein wichtiger Gegenstand in deinem Besitz, den du selber hergestellt hast?", "Gegen welche Art von Person könntest du niemals deine Hand erheben und warum?", "Welcher Art von Person könntest du niemals vergeben und warum?", "Welche Art von Gesetz darf deiner Meinung nach gebrochen werden?", "Welche Art von Gesetz darf deiner Meinung nach niemals gebrochen werden?", "Welche Art zu reisen gefällt dir am besten und warum?", "Hast du schon einmal über die Möglichkeit eines Lebens nach dem Tod nachgedacht? Beeinflussen die Überzeugungen, die du über das Leben nach dem Tod hast, deine Entscheidungen? Wie hängt das mit deinen spirituellen oder religiösen Überzeugungen zusammen?", "Welche Eigenschaft bewunderst du am meisten an anderen Personen und glaubst du, dass du diese Eigenschaft besitzt?", "Findest du es schwieriger, falsch zu liegen oder etwas nicht zu wissen und warum?", "Was ist etwas, worauf du stolz bist, aber noch nie jemandem erzählt hast? Gibt es einen Grund, warum du es für dich behalten hast?", "Hast du Schwächen, die du akzeptiert oder angenommen hast? Was hat dich dazu gebracht, dass du diese Schwächen akzeptiert hast?", "Hast du Meinungen oder Ansichten, die du nicht mit anderen zu teilen wagst? Was hält dich zurück?", "Was wäre eine Sache, die du dir wünschst, obwohl du weißt, dass es wahrscheinlich nie passieren wird? Warum ist es so unwahrscheinlich?", "Welche Tage oder Zeiten im Jahr sind für dich wichtig? Wie gehst du damit um oder wie feierst du sie?", "Welche Gewohnheit oder Tätigkeit bringt dir den meisten inneren Frieden oder Ruhe in deinem Alltag?", "Was ist dein bevorzugter Weg, um dich zu entspannen oder Stress abzubauen, wenn du nicht auf Abenteuer gehst?", "Gibt es eine bestimmte Fertigkeit oder Fähigkeit, die du gerade versuchst zu verbessern? Warum ist dir das wichtig?", "Wie gehst du mit den täglichen Gefahren und Risiken eines Abenteurerlebens um? Bist du eher vorsichtig oder risikobereit?", "Welche Art von Musik oder Klängen inspiriert dich oder beeinflusst deine Stimmung positiv?", "Welche aktuellen Ziele oder Pläne hast du für deine Abenteurerkarriere? Was treibt dich an, diese Ziele zu verfolgen?", "Welche Veränderungen oder Weiterentwicklungen in deinen Fähigkeiten oder Eigenschaften sind dir in letzter Zeit aufgefallen?", "Gibt es eine momentane Herausforderung oder Schwierigkeit, der du dich stellst? Wie gehst du damit um?", "Welche Aktivität oder Aufgabe lenkt dich am besten von den Abenteuern ab? Was zieht dich an dieser Aktivität an und wie hilft sie dir, dich zu erholen?", "Gibt es eine persönliche Grenze, die du kürzlich überschritten hast? Wie hat das deine Sicht auf dich selbst verändert?", "Welche positiven oder negativen Eigenschaften bewunderst oder kritisierst du an dir selbst?", "Welche deiner Gewohnheiten oder Verhaltensweisen stören dich und warum?", "Welche aktuellen Fragen oder Dilemmata beschäftigen dein Gewissen? Welche Seiten oder Lösungsansätze erwägst du, um diese Fragen zu klären?", "Welche Art von Individuen zieht dich am meisten an? Welche eher nicht?", "Welche besonderen Rituale oder Praktiken führst du täglich aus, um dich zu zentrieren?", "Welche Art von Umwelt oder Landschaft beruhigt dich am meisten und warum?", "Welche besonderen Gegenstände oder Symbole tragen für dich eine wichtige Bedeutung? Gibt es eine spezielle Geschichte oder Erinnerung, die mit einem dieser Gegenstände verbunden ist?", "Welche Art von Risiken oder Herausforderungen scheust du dich meistern und warum?", "Welche Art von Emotionen versuchst du am meisten zu kontrollieren? Wie gelingt es dir, diese Emotionen zu kontrollieren, und gibt es Situationen, in denen sie trotzdem durchbrechen?", "Welche Art von persönlicher Weiterentwicklung oder Wachstum strebst du an? Welche konkreten Schritte unternimmst du, um diese Weiterentwicklung zu fördern?", "Welche besonderen Gedanken oder Ideen beschäftigen deinen Geist? Gibt es eine bestimmte Herausforderung oder Fragestellung, die dich dazu antreibt, darüber nachzudenken?", "Welche Art von Schönheit oder Anmut zieh dich am meisten an und warum?"];
+			const themaGegenwart = [
+			"Was ist deiner Meinung nach dein nutzlosestes Talent? Warum ist es deiner Meinung nach nutzlos?",
+			"Welche Befriedigung, abgesehen von Reichtum und Ruhm, hast du im Leben eines Abenteurers gefunden? Welche Art von Belohnung würdest du dir öfter wünschen?",
+			"Auf welche Aspekte deines Alltags freust du dich am meisten? Warum gefallen dir diese Aspekte so gut?",
+			"Was ist dein Lieblingsärgernis, das dich sofort ärgert? Wie reagierst du darauf? Wie würdest du lieber reagieren?",
+			"Glaubst du eher an das Schicksal oder an den freien Willen und warum?",
+			"Siehst du dich selbst als Optimisten oder Pessimisten? Wie beeinflusst dich diese Einstellung, wenn du Risiken eingehst?",
+			"Was gibt es an dir, von dem du sicher bist, dass es sich nie ändern wird? Hast du es schon einmal auf die Probe gestellt?",
+			"Wirst du am Ende deines Lebens eher stolz auf deine Leistungen oder auf deine Integrität sein? Was lässt dich so denken?",
+			"Welchen Aberglauben hast du? Fühlst du dich verpflichtet, ihn anderen aufzuzwingen?",
+			"Was ist deiner Meinung nach wertvoller? Wissenschaft oder Kunst? Und warum? Beschreibe eine Welt ohne deine Wahl in ihr.",
+			"Was ist für dich wichtiger: Rache oder Vergebung? Wie wird dein Alltag von diesem Wert beeinflusst?",
+			"Welche Kunstform spricht dich am meisten an? Wie genießt du sie am liebsten, wenn du sie erlebst?",
+			"Was ist ein wichtiger Gegenstand in deinem Besitz, der neu ist?",
+			"Was ist ein wichtiger Gegenstand in deinem Besitz, der dir vererbt wurde?",
+			"Was ist ein wichtiger Gegenstand in deinem Besitz, den du selber hergestellt hast?",
+			"Gegen welche Art von Person könntest du niemals deine Hand erheben und warum?",
+			"Welcher Art von Person könntest du niemals vergeben und warum?",
+			"Welche Art von Gesetz darf deiner Meinung nach gebrochen werden?",
+			"Welche Art von Gesetz darf deiner Meinung nach niemals gebrochen werden?",
+			"Welche Art zu reisen gefällt dir am besten und warum?",
+			"Hast du schon einmal über die Möglichkeit eines Lebens nach dem Tod nachgedacht? Beeinflussen die Überzeugungen, die du über das Leben nach dem Tod hast, deine Entscheidungen? Wie hängt das mit deinen spirituellen oder religiösen Überzeugungen zusammen?",
+			"Welche Eigenschaft bewunderst du am meisten an anderen Personen und glaubst du, dass du diese Eigenschaft besitzt?",
+			"Findest du es schwieriger, falsch zu liegen oder etwas nicht zu wissen und warum?",
+			"Was ist etwas, worauf du stolz bist, aber noch nie jemandem erzählt hast? Gibt es einen Grund, warum du es für dich behalten hast?",
+			"Hast du Schwächen, die du akzeptiert oder angenommen hast? Was hat dich dazu gebracht, dass du diese Schwächen akzeptiert hast?",
+			"Hast du Meinungen oder Ansichten, die du nicht mit anderen zu teilen wagst? Was hält dich zurück?",
+			"Was wäre eine Sache, die du dir wünschst, obwohl du weißt, dass es wahrscheinlich nie passieren wird? Warum ist es so unwahrscheinlich?",
+			"Welche Tage oder Zeiten im Jahr sind für dich wichtig? Wie gehst du damit um oder wie feierst du sie?",
+			"Welche Gewohnheit oder Tätigkeit bringt dir den meisten inneren Frieden oder Ruhe in deinem Alltag?",
+			"Was ist dein bevorzugter Weg, um dich zu entspannen oder Stress abzubauen, wenn du nicht auf Abenteuer gehst?",
+			"Gibt es eine bestimmte Fertigkeit oder Fähigkeit, die du gerade versuchst zu verbessern? Warum ist dir das wichtig?",
+			"Wie gehst du mit den täglichen Gefahren und Risiken eines Abenteurerlebens um? Bist du eher vorsichtig oder risikobereit?",
+			"Welche Art von Musik oder Klängen inspiriert dich oder beeinflusst deine Stimmung positiv?",
+			"Welche aktuellen Ziele oder Pläne hast du für deine Abenteurerkarriere? Was treibt dich an, diese Ziele zu verfolgen?",
+			"Welche Veränderungen oder Weiterentwicklungen in deinen Fähigkeiten oder Eigenschaften sind dir in letzter Zeit aufgefallen?",
+			"Gibt es eine momentane Herausforderung oder Schwierigkeit, der du dich stellst? Wie gehst du damit um?",
+			"Welche Aktivität oder Aufgabe lenkt dich am besten von den Abenteuern ab? Was zieht dich an dieser Aktivität an und wie hilft sie dir, dich zu erholen?",
+			"Gibt es eine persönliche Grenze, die du kürzlich überschritten hast? Wie hat das deine Sicht auf dich selbst verändert?",
+			"Welche positiven oder negativen Eigenschaften bewunderst oder kritisierst du an dir selbst?",
+			"Welche deiner Gewohnheiten oder Verhaltensweisen stören dich und warum?",
+			"Welche aktuellen Fragen oder Dilemmata beschäftigen dein Gewissen? Welche Seiten oder Lösungsansätze erwägst du, um diese Fragen zu klären?",
+			"Welche Art von Individuen zieht dich am meisten an? Welche eher nicht?",
+			"Welche besonderen Rituale oder Praktiken führst du täglich aus, um dich zu erden?",
+			"Welche Art von Umwelt oder Landschaft beruhigt dich am meisten und warum?",
+			"Welche besonderen Gegenstände oder Symbole tragen für dich eine wichtige Bedeutung? Gibt es eine spezielle Geschichte oder Erinnerung, die mit einem dieser Gegenstände verbunden ist?",
+			"Welche Art von Risiken oder Herausforderungen scheust du dich meistern und warum?",
+			"Welche Art von Emotionen versuchst du am meisten zu kontrollieren? Wie gelingt es dir, diese Emotionen zu kontrollieren, und gibt es Situationen, in denen sie trotzdem durchbrechen?",
+			"Welche Art von persönlicher Weiterentwicklung oder Wachstum strebst du an? Welche konkreten Schritte unternimmst du, um diese Weiterentwicklung zu fördern?",
+			"Welche besonderen Gedanken oder Ideen beschäftigen deinen Geist? Gibt es eine bestimmte Herausforderung oder Fragestellung, die dich dazu antreibt, darüber nachzudenken?",
+			"Welche Art von Schönheit oder Anmut zieh dich am meisten an und warum?",
+			];
 		
 			const randomIndex = Math.floor(Math.random() * themaGegenwart.length);
 			const selectedThemaGegenwart = themaGegenwart[randomIndex];
 		
 			return selectedThemaGegenwart;
 		}
+
+		function generateFrageThemaGefährten() {
+			const themaGefährten = [
+			"Was glaubst du, was deine Gefährten in einem Jahr machen werden? Wo werden sie sein?",
+			"Was glaubst du, was deine Gefährten in fünf Jahren machen werden? Wo werden sie sein?",
+			"Was glaubst du, was deine Gefährten in zehn Jahren machen werden? Wo werden sie sein?",
+			"Wen von deinen Gefährten würdest du am ehesten heiraten?",
+			"Wen von deinen Gefährten würdest du am ehesten verraten?",
+			"Mit wem von deinen Gefährten würdest du am ehesten ins Bett gehen?",
+			"Welchem deiner Gefährten würdest du am ehesten eine äußerliche Generalüberholung verpassen?",
+			"Welchem deiner Gefährten würdest du am ehesten vertrauen, dir eine äußerliche Generalüberholung zu verpassen?",
+			"Wofür fühlst du dich in deiner Gruppe verantwortlich? Schätzt du diese Verantwortung oder lehnst du sie ab? Welche Auswirkungen hat sie auf dich?",
+			"Wen von deinen Gefährten würdest du am ehesten verlieren? Woran könntest du sie am ehesten verlieren?",
+			"Von welchem deiner Gefährten würdest du dir wünschen, dass er dir eine Fähigkeit beibringt? Welche Fähigkeit und warum?",
+			"Welche Vermutung hattest du über einen deiner Gefährten, als du ihn zum ersten Mal getroffen hast? Was hat dich überrascht?",
+			"Wähle einen deiner Gefährten aus und beschreibe, wie du ihn auf einem großen Tanzball vorstellen würdest?",
+			"Wähle einen deiner Gefährten aus und beschreibe, wie du ihn in einer Gladiatorenarena vorstellen würdest?",
+			"Welcher deiner Gefährten hat sich deiner Meinung nach am meisten verändert und wie?",
+			"Welcher deiner Gefährten hat dich deiner Meinung nach am meisten zum Nachdenken angeregt und wie?",
+			"Wem vertraust du von deinen Gefährten am meisten? Was hat er getan, um dieses Vertrauen zu verdienen?",
+			"Über welchen Gefährten hast du dich am meisten geärgert und warum?",
+			"Nenne etwas, das du der Gruppe verschwiegen hast, weil du auf eine Gelegenheit gewartet hast, es ihr zu sagen. Warum hast du gewartet?",
+			"Was würdest du gerne tun, wenn du einen perfekten Tag mit deinen Gefährten verbringen könntest? Wer würde sich am meisten über deine Pläne freuen?",
+			"Wenn du die Zeit dazu hättest, was würdest du am liebsten für einen deiner Gefährten tun?",
+			"Wenn du das Geld dazu hättest, was würdest du am liebsten für einen deiner Gefährten tun?",
+			"Wenn du die Macht dazu hättest, was würdest du am liebsten für einen deiner Gefährten tun?",
+			"Wer in dieser Gruppe ist deiner Meinung nach der größte Optimist?",
+			"Wer in dieser Gruppe ist deiner Meinung nach der größte Pessimist?",
+			"Wen würdest du gerne einmal deinen Gefährten vorstellen? Glaubst du, sie würden sich gut verstehen?",
+			"An welche deiner Gefährten würdest du dich wenden, wenn du in einer peinlichen persönlichen Krise steckst? Warum würdest du dich für diese Personen entscheiden?",
+			"Wer wird deiner Meinung nach in deiner Gruppe am längsten leben und warum?",
+			"Wer wird deiner Meinung nach in deiner Gruppe am ehesten sterben und warum?",
+			"Wenn du mit einem deiner Gefährten in eine Katastrophe gerätst und lange auf Hilfe warten müsstest, mit wem würdest du lieber ausharren und warum?",
+			"Was ist die Grenze, die deine Gefährten niemals überschreiten dürfen, um eine Beziehung zu dir aufrecht zu erhalten? Wer würde diese Grenze am ehesten überschreiten?",
+			"Was macht diese Gruppe einzigartig? Wie ist sie im Vergleich zu anderen Gruppen, in denen du Mitglied warst?",
+			"Könntest du dir vorstellen, nach dieser Reise mit einer anderen Gruppe zu reisen? Was würdest du am meisten vermissen?",
+			"Was hat einer deiner Gefährten getan, auf das du stolz bist oder das dich beeindruckt hat? Hast du ihnen davon erzählt? Warum oder warum nicht?",
+			"Wer von deinen Gefährten kennt dich deiner Meinung nach am wenigsten? Was brauchst du, um dich ihnen zu öffnen?",
+			"Wen von deinen Gefährten siehst du als möglichen zukünftigen Anführer der Gruppe und warum?",
+			"Wer von deinen Gefährten könnte wahrscheinlich am besten mit einer schwierigen diplomatischen Situation umgehen? Was zeichnet seine Fähigkeiten in dieser Hinsicht aus?",
+			"Welcher deiner Gefährten zeigt das größte Potenzial für persönliche Weiterentwicklung? Welche Eigenschaften oder Ereignisse lassen dich zu dieser Einschätzung gelangen?",
+			"Wer in deiner Gruppe versteht deinen Humor am besten? Welche Art von Witzen teilst du mit dieser Person und wie beeinflusst das eure Interaktionen?",
+			"Welcher deiner Gefährten hat eine besonders faszinierende Hintergrundgeschichte? Was genau daran fasziniert dich und wie hat diese Geschichte seinen Charakter geformt?",
+			"Wer von deinen Gefährten könnte am ehesten eine unerwartete Allianz mit einer anderen Gruppe eingehen? Was sind seine Beweggründe für diese Möglichkeit?",
+			"Wer von deinen Gefährten könnte dich in einem Duell besiegen? Wie würdest du reagieren und wie schätzt du deine Chancen ein?",
+			"Welcher deiner Gefährten besitzt eine erstaunliche Fähigkeit, die dich beeindruckt hat? Wie hat er diese Fähigkeit in euren Abenteuern eingesetzt?",
+			"Wer von deinen Gefährten beeinflusst deine Stimmung am meisten, wenn du dich niedergeschlagen fühlst? Wie schafft er es, dich aufzumuntern, und welche Bedeutung hat das für eure Beziehung?",
+			"Welcher deiner Gefährten hat eine seltsame Angewohnheit, die du nicht ganz verstehst? Wie beeinflusst das eure Dynamik und wie versuchst du, damit umzugehen?",
+			"Wer versteht deine tiefsten Ängste am besten in der Gruppe? Wie hat er dich unterstützt, damit umzugehen, und was zeigt das über eure Verbindung?",
+			"Welcher deiner Gefährten ist am enthusiastischsten bei der Idee von Abenteuern? Welche kreativen Vorschläge hat er gemacht, um eure Reise aufregender zu gestalten, und wie hat das die Gruppendynamik beeinflusst?",
+			"Wer in deiner Gruppe teilt deine Faszination für das Unbekannte? Wie hat diese Gemeinsamkeit eure Bindung gestärkt und in welchen Situationen hat sie euch besonders geholfen?",
+			"Welcher deiner Gefährten ist bekannt dafür, unkonventionelle Lösungen für Probleme zu finden? Was sind einige Beispiele für diese kreativen Ansätze und wie haben sie sich ausgewirkt?",
+			"Wer von deinen Gefährten kann in brenzligen Situationen am besten einen kühlen Kopf bewahren? Welche Eigenschaften machen ihn in solchen Momenten zu einem verlässlichen Partner?",
+			];
 		
+			const randomIndex = Math.floor(Math.random() * themaGefährten.length);
+			const selectedThemaGefährten = themaGefährten[randomIndex];
+		
+			return selectedThemaGefährten;
+		}
+
+		function generateFrageThemaTräume() {
+			const themaTräume = [
+			"Wenn du heute in dein Traumhaus einziehen könntest, wie würde es aussehen? Würdest du es mit jemandem teilen?",
+			"Wenn du eine Fähigkeit meistern könntest, welche wäre das? Wofür würdest du sie einsetzen?",
+			"Hast du ein Ziel für deine Reise? Was würdest du tun, wenn du es erreicht hättest?",
+			"Könntest du dir vorstellen, eines Tages selbst ein Kind zu haben? Was müsste sich in deinem Leben ändern, damit du eine Familie gründen könntest? Oder warum möchtest du nie eine Familie haben?",
+			"Welchen Traum hattest du einmal und warum hast du ihn aufgegeben? Warum hattest du ihn ursprünglich?",
+			"Welche Auszeichnung würdest du gerne einmal erhalten? Glaubst du, dass du auf dem besten Weg dazu bist?",
+			"Wenn du ein Stipendium für irgendeine Schule auf der Welt bekommen würdest, was würdest du studieren wollen und warum?",
+			"Wenn du einen Schüler oder Lehrling aufnehmen würdest, was würdest du ihm beibringen? Würde es dir Spaß machen? Wovor hättest du Angst, etwas falsch zu machen?",
+			"Was glaubst du, wirst du in zehn Jahren von deinem jetzigen Leben am meisten vermissen? Worüber wirst du froh sein, wenn du es hinter dir lassen kannst?",
+			"Gibt es eine Veranstaltung, die du schon immer mal besuchen wolltest? Wärst du lieber ein Beobachter oder ein Teilnehmer und warum?",
+			"Wen würdest du gerne erniedrigt sehen? Würdest du gerne für diese Demütigung verantwortlich sein? Wie würdest du diese Person am liebsten gedemütigt sehen wollen?",
+			"Welchen Gegenstand würdest du gerne einmal besitzen und was daran macht es für dich attraktiv?",
+			"Was würde es bedeuten, dein Leben mit jemandem zu teilen? Gibt es jemanden, für den du so empfindest?",
+			"Was ist der leichtsinnigste Erfolg, den du dir erhoffst? Warum findest du ihn leichtfertig? Warum ist er doch reizvoll?",
+			"Wenn dir eine übernatürliche Macht anbieten würde, dir deinen größten Wunsch zu erfüllen, würdest du das Angebot annehmen? Warum oder warum nicht?",
+			"Mit wem würdest du gerne ausgehen? Was würdest du gerne zusammen machen?",
+			"Wenn du dir eine Person auf der Welt aussuchen könntest, die eine deiner Fähigkeiten anerkennt, wer wäre das? Würdest du diese Anerkennung auch wollen, wenn sie kritisch wäre?",
+			"Wessen Respekt möchtest du dir am meisten verdienen? Was glaubst du, musst du dafür tun?",
+			"Wenn man sich lange nach deinem Tod an dich erinnert, wofür möchtest du in Erinnerung bleiben?",
+			"Welche Entdeckung oder Innovation erhoffst du dir für dein Leben? Wie würde sie die Welt, in der du lebst, verändern?",
+			"Welche Art von Luxus würdest du gerne einmal erleben? Glaubst du, dass du ihn jemals in deinem Leben erleben wirst? Wie wichtig ist er dir?",
+			"Welches Ziel wünschst du dir von deinen Gefährten, dass sie es für dich weiter verfolgen, wenn du selbst nicht mehr in der Lage bist, es zu erreichen?",
+			"Möchtest du in etwas der Beste der Welt sein? Wie würdest du wissen, ob du dieses Ziel erreicht hast?",
+			"Wessen Vertrauen möchtest du gewinnen? Warum wäre das für dich wichtig?",
+			"Wenn du ein Geschäft eröffnen müsstest, wie würdest du es nennen und warum? Was sind deine Stärken, die deinen Erfolg garantieren?",
+			"Welche abenteuerliche Sportart würdest du gerne erlernen und an welchem Ort würdest du sie ausüben?",
+			"Welche Art von Abenteuer würdest du gerne mit deinen Gefährten erleben, das nicht unbedingt mit dem aktuellen Handlungsverlauf zu tun hat?",
+			"Welche Art von Musikinstrument würdest du gerne virtuos spielen können? Was reizt dich an diesem Instrument?",
+			"Welche Art von Veranstaltung oder Fest würdest du gerne organisieren, um Personen zusammenzubringen und Freude zu verbreiten?",
+			"Welche außergewöhnliche Fähigkeit würdest du gerne einmal für einen Tag ausprobieren? Wie würde sich das anfühlen?",
+			"Welche Charaktereigenschaft würdest du gerne weiterentwickeln, um deine persönlichen Beziehungen zu vertiefen und zu bereichern?",
+			"Welche emotionale Erfahrung möchtest du gerne noch einmal intensiv durchleben? Warum ist diese Erfahrung für dich besonders bedeutend?",
+			"Welche exotische Pflanze würdest du gerne kultivieren und was würde dich an ihr faszinieren?",
+			"Welche extremen Umweltbedingungen möchtest du einmal erleben und überleben können und warum reizt dich das?",
+			"Welche Fähigkeit oder Eigenschaft eines Tieres würdest du gerne in dein eigenes Leben integrieren und wie würde sich das auswirken?",
+			"Welche Fähigkeit würdest du gerne in einem Bereich erlangen, um einflussreiche Veränderungen herbeizuführen?",
+			"Welche Form von Reisen würdest du gerne intensiv erleben? Auf dem Boden, auf dem Wasser, in der Luft oder im Wildraum?",
+			"Welche historische Entdeckung würdest du gerne selbst gemacht haben und wie hättest du dich gefühlt, als du sie gemacht hast?",
+			"Welche kreative Leidenschaft möchtest du gerne intensiver verfolgen? Was würdest du erschaffen wollen?",
+			"Welche kulinarische Spezialität würdest du gerne perfekt zubereiten können? Welche Geschmackserlebnisse würdest du damit teilen?",
+			"Welche Kunstform würdest du gerne meistern und was fasziniert dich daran?",
+			"Welches außergewöhnliche Tier würdest du gerne als treuen Begleiter haben? Was fasziniert dich daran?",
+			"Welches Buch würdest du gerne schreiben und was wäre das Hauptthema?",
+			"Welches gesellschaftliche Tabu würdest du gerne brechen und warum? Wie würdest du vorgehen?",
+			"Welches Kulturereignis oder Fest würdest du gerne einmal miterleben und warum?",
+			"Welches Rätsel möchtest du gerne lösen und wie würdest du deine Forschung angehen?",
+			"Welche außergewöhnliche Erfahrung möchtest du machen, um deine Sicht auf die Welt zu erweitern?",
+			"Welches Projekt würdest du starten, um deine kreativen Einfälle und Visionen umzusetzen?",
+			"Welche Veränderungen in deinem Umfeld möchtest du vornehmen, um dein Streben nach deinem inneren Wunsch zu fördern?",
+			"Welches persönliche Meisterstück könntest du schaffen, um deine tiefste Sehnsucht auf einzigartige Weise auszudrücken?",
+			];
+		
+			const randomIndex = Math.floor(Math.random() * themaTräume.length);
+			const selectedThemaTräume = themaTräume[randomIndex];
+		
+			return selectedThemaTräume;
+		}
+
+		function generateFrageThemaWelt() {
+			const themaWelt = [
+			"Welches Monster würdest du gerne als unkonventionelles Haustier halten und warum?",
+			"Wo wolltest du schon immer hin? Was möchtest du dort am liebsten machen?",
+			"Wohin würdest du am liebsten zurückkehren? Was zieht dich zurück und warum?",
+			"Wer war deiner Meinung nach der größte Held, der je gelebt hat? Was machte ihn besonders?",
+			"Welche ist deiner Meinung nach die aufregendste Stadt der Welt? Was zeichnet sie aus? Würdest du dorthin passen?",
+			"Welche Sprache oder Kultur hat dich schon immer fasziniert? Was würdest du gerne mehr darüber erfahren?",
+			"Wenn du in eine beliebige Epoche der Geschichte deiner Welt reisen könntest, welche würdest du wählen und warum?",
+			"Was ist das Ungewöhnlichste, das du jemals gegessen hast? Würdest du es wieder essen?",
+			"Wenn du durch eine Region reisen könntest, nur um die Landschaft zu genießen, wohin würdest du reisen? Was macht diese Region zu einem Traumziel?",
+			"Was ist deiner Meinung nach die gefährlichste Naturkatastrophe? Was macht sie so gefährlich?",
+			"Was wird deiner Meinung nach am ehesten die Apokalypse auslösen? Glaubst Du, dass diese Gefahr allgemein erkannt wird?",
+			"Was war deiner Meinung nach die wichtigste Entdeckung oder Erfindung der letzten zehn Jahre? Warum bist du dieser Meinung?",
+			"Was war deiner Meinung nach die wichtigste Entdeckung oder Erfindung der letzten hundert Jahre? Warum bist du dieser Meinung?",
+			"Welche Organisation bewunderst du, aber du könntest ihr nie beitreten? Warum hast du das Gefühl, du könntest nicht dazugehören?",
+			"Was ist deiner Meinung nach das beste Getränk in deiner Welt und warum?",
+			"Was ist deiner Meinung nach das stärkste Getränk in deiner Welt und warum?",
+			"Welche Quelle ist deiner Meinung nach die zuverlässigste für Nachrichten und warum?",
+			"Was ist für dich die größte Tragödie der jüngsten Vergangenheit? Was macht sie für dich so besonders?",
+			"Welches ist die beste Taverne, in der du je gewesen bist? Was macht sie besonders oder hat sie besonders gemacht?",
+			"Was ist ein einzigartiges und lustiges Ereignis oder eine Aktivität, die es nur an einem einzigen Ort auf der Welt gibt? Warum ist es etwas Besonderes für dich? Ist es bekannt oder ein Geheimtipp?",
+			"Welchen Trend hast du gesehen, der dir Sorgen oder Ärger bereitet?",
+			"Welchen Trend hast du gesehen, der dich stark begeistert?",
+			"Mit welcher Tradition oder welchem Fest bist du aufgewachsen, von dem du glaubst, dass mindestens einer deiner Gefährten es schätzen würde?",
+			"Wer ist deiner Meinung nach die berühmteste Person, die je gelebt hat? Was denkst du über sie?",
+			"Wer ist deiner Meinung nach die berüchtigste Person, die je gelebt hat? Wie denkst du über sie?",
+			"Was ist etwas, das sich die meisten Personen wünschen und das deiner Meinung nach mehr Mühe macht, als es wert ist?",
+			"Von welchem Teil der Welt hast du gehört, dass es sehr gefährlich ist, ihn zu durchqueren? Glaubst du, dass du ihn sicher überqueren könntest? Was könnte dich motivieren, dieses Risiko einzugehen?",
+			"Über welches historische Ereignis haben die meisten Personen deiner Meinung nach eine falsche Vorstellung und was verstehen sie falsch?",
+			"Wer kocht das beste Essen in deiner Welt und was macht es so besonders?",
+			"Welche Legende oder Sage aus deiner Heimat fasziniert dich am meisten? Was macht sie so ansprechend für dich?",
+			"Welches geheimnisvolle Relikt oder Artefakt würdest du gerne entdecken? Welche Legenden ranken sich darum, und warum fasziniert es dich?",
+			"In welchem mystischen oder unerforschten Gebiet würdest du gerne Abenteuer erleben? Was hoffst du dort zu finden?",
+			"Welche sagenumwobene Gestalt oder Kreatur aus den Märchen deiner Welt übst du bewundernde Faszination aus? Was fasziniert dich an ihr?",
+			"In welchem Naturphänomen, sei es magisch oder natürlichen Ursprungs, siehst du eine tiefere Bedeutung? Was glaubst du, könnte es symbolisieren?",
+			"Welche mythische Kreatur aus den Sagen deiner Welt würdest du gerne persönlich treffen? Warum interessiert dich gerade diese Kreatur?",
+			"Welche Gegend deiner Welt gilt als unberührter, heiliger Ort? Was denkst du, würde es bedeuten, dorthin zu gelangen und diesen Ort zu erleben?",
+			"Welche Gruppe von Nomaden oder Reisenden, welche die Weiten deiner Welt durchstreifen, bewunderst du für ihre Lebensweise?",
+			"Welcher Fluch oder welcher Segen, der in deiner Welt bekannt ist, beeindruckt dich am meisten? Wie würdest du reagieren, wenn du von ihm betroffen wärst?",
+			"Welche verlorene Zivilisation oder vergessene Stadt weckt deine Neugier? Warum denkst du, dass sie verschwunden ist, und was glaubst du, könnte dort entdeckt werden?",
+			"Welche Art von magischer Pflanze beeindruckt dich am meisten? Welche Eigenschaften oder Kräfte werden ihr zugeschrieben?",
+			"Welche Jahreszeit in deiner Welt ist für ihre Schönheit und Magie bekannt? Was liebst du am meisten daran?",
+			"Welches geheimnisvolle Phänomen tritt regelmäßig in einem bestimmten Teil deiner Welt auf? Welche Erklärungen werden dafür gegeben?",
+			"Gibt es eine bestimmte Himmelserscheinung, die in deiner Welt als Omen oder Vorzeichen gilt? Was denkst du, würde sie ankündigen?",
+			"Welche Tierart hat in deiner Welt eine besondere Verbindung zu den Geistern oder Ahnen? Warum fasziniert dich diese Verbindung?",
+			"Gibt es eine Kunstform, sei es Musik, Malerei oder Poesie, die in deiner Welt als besonders ausdrucksstark gilt? Was macht sie so einzigartig?",
+			"Von welcher geheimen Gesellschaft oder geheimen Kult hast du schon gehört und was denkst du, treiben sie im Verborgenen?",
+			"Welche uralte Prophezeiung in deiner Welt erweckt dein Interesse? Was denkst du, könnte sich hinter den rätselhaften Worten verbergen?",
+			"Welche mystische Krankheit ist in deiner Welt berüchtigt? Was glaubst du, könnte die Ursache dafür sein?",
+			"Welche uralte Weisheit oder Legende wird von den weisen Alten in deiner Welt gepflegt? Was möchtest du von ihnen lernen?",
+			"Welche Regionen deiner Welt, in der die Grenzen zwischen den Dimensionen verschwimmen, existieren und welche Geheimnisse könnten dort versteckt sein?",
+			];
+		
+			const randomIndex = Math.floor(Math.random() * themaWelt.length);
+			const selectedThemaWelt = themaWelt[randomIndex];
+		
+			return selectedThemaWelt;
+		}
+
+		function generateFrageThemaHypothetisches() {
+			const themaHypothetisches = [
+			"Wenn du ein böser Herrscher wärst, was wäre dein böser Plan? Wie würdest du dich kleiden? Wie sähe deine Festung aus?",
+			"Wenn du morgen stirbst und ein Geist wirst, wen würdest du heimsuchen? Wie würdest du ihn heimsuchen?",
+			"Was ist etwas, das du in Wirklichkeit nicht gerne tun würdest, das dir aber Spaß macht, wenn du es dir vorstellst? Warum empfindest du das so?",
+			"Welchen Rat oder welche Warnung würdest du einer jüngeren Version von dir geben? Wie würde sich das deiner Meinung nach auf dein heutiges Leben auswirken?",
+			"Wie würdest du eine deiner wichtigsten Fähigkeiten ersetzen, wenn du sie verlieren würdest? Wem würdest du vertrauen, dir diese neue Fähigkeit beizubringen?",
+			"Wenn du eine Prophezeiung erhalten könntest, um etwas über ein zukünftiges Ereignis zu erfahren, welche wäre das und warum?",
+			"Wenn du irgendein Verbrechen begehen könntest und damit davonkommen würdest, was würdest du tun und wen würdest du mitnehmen?",
+			"Wenn du morgen plötzlich in aller Munde wärst, was glaubst du, wovon die Geschichte handeln würde?",
+			"Wenn du eine andere Identität oder ein anderes Pseudonym annehmen würdest, welches wäre das? Was würdest du damit anstellen?",
+			"Wenn du in einer Woche ein riesiges Vermögen ausgeben könntest, aber nur für flüchtige Erlebnisse und Konsumgüter, wofür würdest du es ausgeben?",
+			"Wenn du mit einem Fingerschnippen etwas in der Gesellschaft ändern könntest, was wäre das?",
+			"Mit welchen drei lebenden oder toten Personen würdest du dich gerne einmal bei einem Abendessen unterhalten?",
+			"Wenn du kein Abenteurer sein könntest, was würdest du stattdessen mit deinem Leben anfangen? Glaubst du, dass du mit deinem Leben zufrieden wärst?",
+			"Wenn du das Risiko einer gefährlichen Tätigkeit ausschließen könntest, um sie einmal auszuprobieren, welche würdest du wählen und warum?",
+			"Welche deiner Vorfahren würdest du gerne treffen und worüber möchtest du mit ihnen sprechen?",
+			"Würdest du lieber eine wichtige Schlacht gewinnen, eine große Entdeckung machen, ein künstlerisches Meisterwerk schaffen, eine technische Innovation einführen oder ein Leiden lindern und warum?",
+			"Wenn du zu anderen Planeten reisen könntest, aber nie mehr zu deiner Heimatwelt zurückkehren könntest, würdest du es tun?",
+			"Wenn du zu verschiedenen Ebenen reisen könntest, aber nie mehr zu deiner Heimatwelt zurückkehren könntest, würdest du es tun?",
+			"Wenn du in verschiedene Dimensionen reisen könntest, aber nie mehr zu deiner Heimatwelt zurückkehren könntest, würdest du es tun?",
+			"Wärst du lieber in der Vergangenheit oder in der Zukunft gefangen? Wenn du wählen könntest, wie weit in Vergangenheit oder Zukunft würdest du bleiben wollen?",
+			"Wenn du dich weniger für deine Ideale einsetzen würdest, was würde sich dann in deinem Leben ändern?",
+			"Wenn du plötzlich in ein Fabelwesen oder ein Monster verwandelt würdest, welches würdest du wählen? Was würdest du als erstes mit deiner Kraft machen?",
+			"Wärst du lieber in der Lage, Menschen leicht zu belügen oder ihnen wirklich zu vertrauen? Wie würde sich das auf deine Beziehungen auswirken?",
+			"Wenn du eine Farbe aus der Welt entfernen müsstest, welche wäre das und warum?",
+			"Wärst du bereit, fünf Jahre Herrscher mit absoluter Macht zu sein, wenn du die folgenden fünf Jahre als Bettler oder Gefangener verbringen müsstest? Wäre die Macht die späteren Strapazen wert?",
+			"Was würdest du als erstes in deinem Leben ändern, wenn du plötzlich reich wärst und warum?",
+			"Wenn du das Gefühl hättest, dass die Herausforderungen in deinem Leben außer Kontrolle geraten sind und du dich nicht an deine Gefährten wenden kannst, an wen würdest du dich wenden? Wie würdest du reagieren?",
+			"Wenn du einen Tag lang das Leben eines Tieres leben könntest, welches Tier würdest du wählen und warum?",
+			"Wenn du die Möglichkeit hättest, eine erstaunliche Entdeckung in einem bisher unerforschten Bereich zu machen, welcher Bereich wäre das?",
+			"Wenn du die Fähigkeit hättest, in die Träume anderer Personen einzutauchen, welchen Traum würdest du gerne erkunden und warum?",
+			"Wenn du ein erstaunliches Kunstwerk schaffen könntest, welcher Stil und welches Medium würden dich am meisten ansprechen?",
+			"Wenn du die Fähigkeit hättest, mit Tieren zu kommunizieren, welches Tier würdest du zuerst ansprechen und was würdest du fragen?",
+			"Wenn du in der Lage wärst, einen Tag lang in die Gedanken einer anderen Person zu schlüpfen, wen würdest du wählen und warum?",
+			"Wenn du die Gelegenheit hättest, ein Verbrechen oder Mysterium aus der Vergangenheit aufzuklären, welches würdest du wählen und warum?",
+			"Wenn du in einem anderen Universum leben könntest, wie sähe dieses Universum aus? Welche Regeln würden dort gelten?",
+			"Wenn du die Möglichkeit hättest, in die Zukunft zu reisen und einen Blick auf dein zukünftiges Leben zu werfen, würdest du es tun? Warum oder warum nicht?",
+			"Wenn du eine unbekannte Insel entdecken könntest, wie würdest du sie benennen und welche Entdeckungen erhoffst du dir?",
+			"Wenn du in der Lage wärst, deine Emotionen wie auf einem Regler einzustellen, welche Emotion würdest du am häufigsten empfinden wollen und warum?",
+			"Stell dir vor, du könntest eine Schule für außergewöhnliche Talente gründen. Welche Fähigkeiten wären auf dem Lehrplan und wie würdest du die Schüler inspirieren?",
+			"Stell dir vor, du könntest eine neue Sprache fließend sprechen, ohne sie zu lernen. Welche Sprache würdest du wählen und wie würdest du diese Fähigkeit nutzen?",
+			"Wenn du die Möglichkeit hättest, eine Woche lang das Leben einer berühmten Persönlichkeit aus der Geschichte zu leben, wen würdest du wählen und warum?",
+			"Wenn du in der Lage wärst, den Lauf der Natur zu beeinflussen, welche natürliche Katastrophe würdest du verhindern wollen und wie würdest du es tun?",
+			"Stell dir vor, du könntest die Welt in eine fiktive Realität eintreten lassen, wie sie in einem Buch oder einer Sage existiert. Welche Welt würdest du wählen und welche Rolle würdest du darin spielen?",
+			"Wenn du in der Lage wärst, deine eigene Realität zu erschaffen, wie sähe sie aus? Welche Regeln und Gesetze würden darin gelten?",
+			"Angenommen, du könntest eine Reise zu einem der tiefsten Punkte des Ozeans oder zu den weitesten Orten des Wildraums unternehmen. Welche Reise würdest du wählen und warum?",
+			"Wenn du die Fähigkeit hättest, eine globale Feier oder Tradition einzuführen, was würdest du feiern und wie würdest du die verschiedenen Völker dazu bringen, sich zu beteiligen?",
+			"Wenn du ein magisches Artefakt finden könntest, das dir eine Frage über die Vergangenheit, Gegenwart oder Zukunft beantwortet, welche Frage würdest du stellen?",
+			"Stell dir vor, du könntest eine Nachricht an dein zukünftiges Selbst senden. Welche wichtige Botschaft oder welchen Rat würdest du übermitteln?",
+			"Wenn du die Fähigkeit hättest, den Verlauf eines historischen Ereignisses zu ändern, welches Ereignis würdest du wählen und wie würdest du die Welt dadurch beeinflussen?",
+			"Angenommen, du könntest eine Woche lang die Kontrolle über das Wissen aller Völker haben. Welche Wissenslücken würdest du füllen und welche Geheimnisse würdest du lüften?",
+			];
+		
+			const randomIndex = Math.floor(Math.random() * themaHypothetisches.length);
+			const selectedThemaHypothetisches = themaHypothetisches[randomIndex];
+		
+			return selectedThemaHypothetisches;
+		}
+		
+		// Arrays zum Speichern bereits generierter Fragen
+		const generatedFragenThemaVergangenheit = [];
+		const generatedFragenThemaGegenwart = [];
+		const generatedFragenThemaGefährten = [];
+		const generatedFragenThemaTräume = [];
+		const generatedFragenThemaWelt = [];
+		const generatedFragenThemaHypothetisches = [];
+
+		// Funktion zur Generierung einzigartiger Fragen
+		function generateUniqueFrage(generatedArray, generateFunction) {
+			let generatedFrage = generateFunction();
+			while (generatedArray.includes(generatedFrage)) {
+				generatedFrage = generateFunction();
+			}
+			generatedArray.push(generatedFrage);
+			return generatedFrage;
+		}
+
+		// Funktion zum Reduzieren von aufeinanderfolgenden Zeilenumbrüchen
+		function reduceLineBreaks(text) {
+			return text.replace(/\n{3,}/g, '\n\n'); // Ersetze 3 oder mehr Zeilenumbrüche durch 2 Zeilenumbrüche
+		}
 		//Funktion zum Generieren und Anzeigen der Sätze
 		btnGenerate.addEventListener('click', (event) => {
 			const container = document.getElementById('container');
 			container.querySelectorAll('li').forEach((li) => li.remove());
 			const numAnzahl = parseInt(numAnzahlField.value);
+			generatedFragenThemaVergangenheit.length = 0;
+    		generatedFragenThemaGegenwart.length = 0;
+			generatedFragenThemaGefährten.length = 0;
+   			generatedFragenThemaTräume.length = 0;
+			generatedFragenThemaWelt.length = 0;
+			generatedFragenThemaHypothetisches.length = 0;
+			const maxPerThema = 50; // Maximale Anzahl pro Thema (sollte nicht größer sein, als die Anzahl der Elemente in den Arrays)
 		
-			for (let i = 0; i < numAnzahl; i++) {
-				const themaVergangenheit = generateFrageThemaVergangenheit();
-				const themaGegenwart = generateFrageThemaGegenwart();
+			for (let i = 0; i < Math.min(numAnzahl, maxPerThema); i++) {
+				const themaVergangenheit = generateUniqueFrage(generatedFragenThemaVergangenheit, generateFrageThemaVergangenheit);
+				const themaGegenwart = generateUniqueFrage(generatedFragenThemaGegenwart, generateFrageThemaGegenwart);
+				const themaGefährten = generateUniqueFrage(generatedFragenThemaGefährten, generateFrageThemaGefährten);
+				const themaTräume = generateUniqueFrage(generatedFragenThemaTräume, generateFrageThemaTräume);
+				const themaWelt = generateUniqueFrage(generatedFragenThemaWelt, generateFrageThemaWelt);
+				const themaHypothetisches = generateUniqueFrage(generatedFragenThemaHypothetisches, generateFrageThemaHypothetisches);
 				const li = document.createElement('li');
 		
-				const output = `${document.getElementById("checkboxVergangenheit").checked ? themaVergangenheit + "\n\n":''}${document.getElementById("checkboxGegenwart").checked ? themaGegenwart + "\n\n":''}`;
-				li.innerHTML = output;
+				const output = `${document.getElementById("checkboxVergangenheit").checked ? themaVergangenheit + "\n\n":''}${document.getElementById("checkboxGegenwart").checked ? themaGegenwart + "\n\n":''}${document.getElementById("checkboxGefährten").checked ? themaGefährten + "\n\n":''}${document.getElementById("checkboxTräume").checked ? themaTräume + "\n\n":''}${document.getElementById("checkboxWelt").checked ? themaWelt + "\n\n":''}${document.getElementById("checkboxHypothetisches").checked ? themaHypothetisches + "\n\n":''}`;
+				const reducedOutput = reduceLineBreaks(output); // Reduziere aufeinanderfolgende Zeilenumbrüche
+				li.innerHTML = reducedOutput;
 				container.appendChild(li);
 			}
 		});
@@ -390,5 +768,4 @@
 		
 	</script>
    </body>
-  </html>
-  
+</html>
