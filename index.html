@@ -157,6 +157,7 @@
 	<h1>Hintergrundgeschichte</h1>
 	<p>Dieser Generator generiert Fragen für die Hintergrundgeschichte eines Charakters</p>
 	<div id="thema">
+	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxPersönlichkeit" class="thema-checkbox" checked> Persönlichkeit</label><br>
 	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxVergangenheit" class="thema-checkbox" checked> Vergangenheit</label><br>
 	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxGegenwart" class="thema-checkbox" checked> Gegenwart</label><br>
 	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxGefährten" class="thema-checkbox" checked> Gefährten</label><br>
@@ -225,6 +226,9 @@
 			}
 		}
 		
+		document.getElementById("checkboxPersönlichkeit").addEventListener("change", function() {
+			toggleThema("checkboxPersönlichkeit", "persönlichkeitThema");
+		});
 		document.getElementById("checkboxVergangenheit").addEventListener("change", function() {
 			toggleThema("checkboxVergangenheit", "vergangenheitThema");
 		});
@@ -295,6 +299,67 @@
 
 				
 		//Bestimmt die Farbe des Einbandes
+
+		function generateFrageThemaPersönlichkeit() {
+			const themaPersönlichkeit = [
+			"Würdest du eher dazu neigen, aktiv zu handeln oder dich für die Ruhe der Faulheit zu entscheiden?",
+			"Bist du eher anspruchslos und zufrieden oder verspürst du eine gewisse Gier nach mehr?",
+			"Würdest du eher asketisch leben und auf Überflüssiges verzichten oder hedonistischen Freuden nachgeben?",
+			"Wärst du eher aufgeklärt und rational oder eher abergläubisch und von Übernatürlichem beeinflussbar?",
+			"Neigst du eher dazu, dich zu beherrschen und ruhig zu bleiben oder würdest du eher deine Emotionen unbeherrscht zeigen?",
+			"Wählst du eher die Bescheidenheit oder neigst du dazu, dich angeberisch zu präsentieren?",
+			"Bist du eher besonnen und überlegst gut oder wirst du leicht ungestüm in deinen Handlungen?",
+			"Würdest du eher ehrlich handeln oder bist du geneigt, verschlagen zu agieren?",
+			"Bist du eher erfahren und weißt, wie du in Situationen handeln musst, oder hast du in deinem Leben nur wenig Erfahrung sammeln können und bist eher unerfahren?",
+			"Wärst du eher der extrovertierte, gesellige Typ oder eher introvertiert und zurückhaltend?",
+			"Wählst du eher die freundliche Seite oder neigst du zur Streitsucht und Konfrontation?",
+			"Neigst du eher zur friedlichen Lösung von Konflikten oder würdest du in gewissen Situationen zur Gewaltbereitschaft neigen?",
+			"Bist du eher fröhlich und unbeschwert oder eher ernst und nachdenklich?",
+			"Würdest du eher fürsorglich und hilfsbereit agieren oder tendierst du dazu, ausbeuterisch zu sein?",
+			"Wählst du eher den gehorsamen Weg oder neigst du zur Rebellion gegen etablierte Normen?",
+			"Tendierst du eher dazu, dich an Gesetze zu halten, oder könntest du dich verbrecherischen Neigungen hingeben?",
+			"Bist du eher großzügig und freigiebig oder könntest du als geizig bezeichnet werden?",
+			"Wärst du eher als \"gut\" oder \"böse\" einzustufen, basierend auf deinen Handlungen und Entscheidungen?",
+			"Würdest du eher hilfsbereit und uneigennützig agieren oder zeigst du tendenziell egoistische Tendenzen?",
+			"Bist du eher hoffnungsvoll und optimistisch oder eher von Sorgen geplagt und pessimistisch eingestellt?",
+			"Neigst du eher zur Höflichkeit und Respekt oder fällst du eher durch deine Unhöflichkeit auf?",
+			"Würdest du eher humorvoll und lachend auftreten oder eher ernst und ohne Humor sein?",
+			"Bist du eher keusch und zurückhaltend oder spürst du eine gewisse Lüsternheit in dir?",
+			"Würdest du eher konzentriert und aufmerksam handeln oder fällt es dir schwer, dich auf etwas zu fokussieren?",
+			"Bist du eher kreativ und einfallsreich oder mangelt es dir an Ideenreichtum?",
+			"Neigst du eher zur Lebensfreude und Fröhlichkeit oder spürst du tendenziell eine depressive Stimmung?",
+			"Wärst du eher liberal und offen für Veränderungen oder konservativ und an Traditionen festhaltend?",
+			"Würdest du dich als liebevoll und fürsorglich bezeichnen oder tendierst du eher dazu, gemein zu sein?",
+			"Bist du eher loyal und vertrauenswürdig oder neigst du zur Verräterei?",
+			"Neigst du eher zur Maßhaltung und Zurückhaltung oder zeigst du tendenziell verschwenderisches Verhalten?",
+			"Wählst du eher den mitfühlenden Weg oder könntest du als unbarmherzig beschrieben werden?",
+			"Wärst du eher nachgiebig und bereit, Kompromisse einzugehen, oder zeigst du dich eher störrisch und unnachgiebig?",
+			"Tendierst du eher zur Nachsicht und Vergebung oder fällst du eher durch deine Strenge auf?",
+			"Wählst du eher die Neugierde und den Drang, Dinge zu erkunden, oder zeigst du ein desinteressiertes Verhalten?",
+			"Bist du eher optimistisch und siehst das Gute in allem oder neigst du zur Pessimismus und siehst die negativen Aspekte?",
+			"Neigst du eher zur Pedanterie und Genauigkeit oder zeigst du ein nachlässiges Verhalten?",
+			"Würdest du eher an Prinzipien und Grundsätze festhalten oder könntest du opportunistische Entscheidungen treffen?",
+			"Bist du eher rational und logisch in deinem Denken oder neigst du zu irrationalen Gedanken und Handlungen?",
+			"Neigst du eher dazu, die Realität nüchtern zu betrachten, oder zeigst du esoterische Tendenzen und suchst nach tieferen Bedeutungen?",
+			"Bist du eher religiös oder ziehst du einen unreligiösen Weg vor, basierend auf deinen Überzeugungen?",
+			"Neigst du eher zur Ruhe und Gelassenheit oder reagierst du schnell hitzig und unkontrolliert?",
+			"Bist du eher selbstsicher und vertraust auf deine Fähigkeiten oder fällst du durch Unsicherheit und Zweifel auf?",
+			"Wählst du eher die Selbstständigkeit und möchtest unabhängig handeln oder zeigst du Abhängigkeit von anderen?",
+			"Neigst du eher zur Tapferkeit und dem Willen, dich Gefahren zu stellen, oder zeigst du eher ängstliche, feige Tendenzen?",
+			"Bist du eher tolerant und offen für Vielfalt oder zeigst du eine gewisse Intoleranz gegenüber Andersdenkenden?",
+			"Wählst du eher die Unternehmungslust und den Drang, Neues zu entdecken, oder zeigst du eine gewisse Lethargie und Zurückhaltung?",
+			"Bist du eher bereit, dich unterzuordnen und andere Meinungen anzunehmen, oder zeigst du herrisches und dominantes Verhalten?",
+			"Neigst du eher zur Verantwortungsbewusstsein und zuverlässigem Handeln oder fällst du durch verantwortungsloses Verhalten auf?",
+			"Bist du eher versöhnlich und bereit, Konflikte beizulegen, oder neigst du dazu, nachtragend zu sein?",
+			"Wählst du eher die Vertrauensseligkeit und gehst offen auf andere Menschen zu, oder zeigst du Misstrauen und Vorsicht?"
+		];
+		
+			const randomIndex = Math.floor(Math.random() * themaPersönlichkeit.length);
+			const selectedThemaPersönlichkeit = themaPersönlichkeit[randomIndex];
+		
+			return selectedThemaPersönlichkeit;
+		}
+
 		function generateFrageThemaVergangenheit() {
 			const themaVergangenheit = [
 			"Wie hast Du Deine wichtigste Fähigkeit gelernt? Wer hat sie dir beigebracht? Warum ist diese Fähigkeit so wichtig?",
@@ -656,6 +721,7 @@
 		}
 		
 		// Arrays zum Speichern bereits generierter Fragen
+		const generatedFragenThemaPersönlichkeit = [];
 		const generatedFragenThemaVergangenheit = [];
 		const generatedFragenThemaGegenwart = [];
 		const generatedFragenThemaGefährten = [];
@@ -682,6 +748,7 @@
 			const container = document.getElementById('container');
 			container.querySelectorAll('li').forEach((li) => li.remove());
 			const numAnzahl = parseInt(numAnzahlField.value);
+			generatedFragenThemaPersönlichkeit.length = 0;
 			generatedFragenThemaVergangenheit.length = 0;
     		generatedFragenThemaGegenwart.length = 0;
 			generatedFragenThemaGefährten.length = 0;
@@ -691,6 +758,7 @@
 			const maxPerThema = 50; // Maximale Anzahl pro Thema (sollte nicht größer sein, als die Anzahl der Elemente in den Arrays)
 		
 			for (let i = 0; i < Math.min(numAnzahl, maxPerThema); i++) {
+				const themaPersönlichkeit = generateUniqueFrage(generatedFragenThemaPersönlichkeit, generateFrageThemaPersönlichkeit);
 				const themaVergangenheit = generateUniqueFrage(generatedFragenThemaVergangenheit, generateFrageThemaVergangenheit);
 				const themaGegenwart = generateUniqueFrage(generatedFragenThemaGegenwart, generateFrageThemaGegenwart);
 				const themaGefährten = generateUniqueFrage(generatedFragenThemaGefährten, generateFrageThemaGefährten);
@@ -699,7 +767,7 @@
 				const themaHypothetisches = generateUniqueFrage(generatedFragenThemaHypothetisches, generateFrageThemaHypothetisches);
 				const li = document.createElement('li');
 		
-				const output = `${document.getElementById("checkboxVergangenheit").checked ? themaVergangenheit + "\n\n":''}${document.getElementById("checkboxGegenwart").checked ? themaGegenwart + "\n\n":''}${document.getElementById("checkboxGefährten").checked ? themaGefährten + "\n\n":''}${document.getElementById("checkboxTräume").checked ? themaTräume + "\n\n":''}${document.getElementById("checkboxWelt").checked ? themaWelt + "\n\n":''}${document.getElementById("checkboxHypothetisches").checked ? themaHypothetisches + "\n\n":''}`;
+				const output = `${document.getElementById("checkboxPersönlichkeit").checked ? themaPersönlichkeit + "\n\n":''}${document.getElementById("checkboxVergangenheit").checked ? themaVergangenheit + "\n\n":''}${document.getElementById("checkboxGegenwart").checked ? themaGegenwart + "\n\n":''}${document.getElementById("checkboxGefährten").checked ? themaGefährten + "\n\n":''}${document.getElementById("checkboxTräume").checked ? themaTräume + "\n\n":''}${document.getElementById("checkboxWelt").checked ? themaWelt + "\n\n":''}${document.getElementById("checkboxHypothetisches").checked ? themaHypothetisches + "\n\n":''}`;
 				const reducedOutput = reduceLineBreaks(output); // Reduziere aufeinanderfolgende Zeilenumbrüche
 				li.innerHTML = reducedOutput;
 				container.appendChild(li);
