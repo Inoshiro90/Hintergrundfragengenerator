@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="de">
+   <head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		/*Aktiviert sanftes Scrollen im gesamten Dokument*/
+		html {
+		scroll-behavior: smooth;
+		}
+		/* Stil für die Breite des Body-Elements und die Schriftart */
+		body {
+		max-width: 80%;
+		display: inline-block;
+		margin-left: 10%;
+		margin-right: 10%;
+		font-family: 'Arial', sans-serif;
+		}
+		/* Stil für den Button "Aspekte der Beschreibung"*/
+		.collapsible {
+		/*background-color: #E1E1E1;*/
+		color: #444;
+		cursor: pointer;
+		padding: 10px;
+		width: 100%;
+		border: none;
+		text-align: left;
+		outline: none;
+		font-size: 16px;
+		}
+		/* Stil für den Bereich nach dem Button "Aspekte der Beschreibung"*/
+		.collapsible:after {
+		content: '\02795';
+		/* Unicode Zeichen für "plus"-Zeichen (+) */
+		font-size: 13px;
+		color: white;
+		float: right;
+		margin-left: 5px;
+		}
+		/* Stil für den Bereich nach dem Button "Aspekte der Beschreibung", wenn dieser geöffnet ist*/
+		.active:after {
+		content: "\2796";
+		/* Unicode Zeichen für "minus"-Zeichen (-) */
+		}
+		/* Stil für den Inhalt, der standardmäßig ausgeblendet ist */
+		.content {
+		max-height: 0;
+		overflow: hidden;
+		/*padding: 0 10px;*/
+		background: #F1F1F1;
+		transition: max-height 0.2s ease-out;
+		}
+		/* Stil für den Zeilenumbruch innerhalb der generierten Sätze*/
+		ul#container {
+		white-space: pre-wrap;
+		padding-inline-start: 0px;
+		}
+		/* Stil für die Auflistung, damit keine Aufzählungszeichen angezeigt werden */
+		ul {
+		list-style-type: none;
+		margin-top: 0px;
+		}
+		/*Stil für die Auflistungselemente*/
+		li {
+		padding-top: 10px;
+		}
+		/*Stil für den "Alle auswählen"-Button für Genre*/
+		button#btnSelectAllThema
+		{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: 10px;				
+		}
+		/*Stil für den "Alle abwählen"-Button für Genre*/
+		button#btnDeselectAllThema
+		{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: 15px;
+		}
+		/*Stil für den "Alle auswählen"-Button für Beschreibung*/
+		button#btnSelectAllThema
+		{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: 10px;				
+		}
+		/*Stil für den "Alle abwählen"-Button für Beschreibung*/
+		button#btnDeselectAllThema
+		{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: 15px;
+		}
+		/*Stil für den "Generieren"-Button*/
+		button#btnGenerate
+		{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: 10px;
+		}
+		/*Stil für den "In Zwischenablage kopieren"-Button*/
+		button#btnCopy
+		{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: 10px;
+		}
+		/*Stil für den "Löschen"-Button*/
+		button#btnClear
+		{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: 10px;
+		}
+		/*Stil für das Inputfeld "Anzahl:"*/
+		input#numAnzahlField
+		{
+		width: 50px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: 10px;
+		}
+		/*Stil für die Label der Checkboxen*/
+		label{
+		margin-top: 5px;
+		margin-left: 10px;
+		}
+		/*Stil für das Inputfeld*/
+		input{
+		margin-top: 10px;
+		}
+		/*Stil für den "Nach oben Scrollen"-Button*/	
+		#scrollTop {
+		display: none;
+		position: fixed;
+		bottom: 20px;
+		right: 30px;
+		z-index: 99;
+		border: none;
+		outline: none;
+		color: #444;
+		background-color: #F1F1F1;
+		cursor: pointer;
+		padding: 15px;
+		border-radius: 10px;
+		font-size: 20px;
+		font-style: bold;
+		}
+		/*Stil für den "Nach oben Scrollen"-Button beim Hovern*/
+		#scrollTop:hover {
+		background-color: #444;
+		color: #F1F1F1;
+		}	
+	</style>
+   </head>
+   <body>
+	<h1>Hintergrundgeschichte</h1>
+	<p>Dieser Generator generiert Fragen für die Hintergrundgeschichte eines Charakters</p>
+	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxVergangenheit" class="thema-checkbox" checked> Vergangenheit</label><br>
+	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxGegenwart" class="thema-checkbox" checked> Gegenwart</label><br>
+	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxGefährten" class="thema-checkbox" checked> Gefährten</label><br>
+	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxTräume" class="thema-checkbox" checked> Träume</label><br>
+	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxWelt" class="thema-checkbox" checked> Welt</label><br>
+	<label style="white-space: nowrap;"><input type="checkbox" id="checkboxHypothetisches" class="thema-checkbox" checked> Hypothetisches</label><br>
+	<button class="inCollapsible" id="btnSelectAllThema">Alle auswählen</button>
+	<button class="inCollapsible" id="btnDeselectAllThema">Alle abwählen</button>
+	<div class="buttons">
+		<label style="margin-top: 10px; margin-bottom: 10px; margin-left: 10px;" for="numAnzahlField">Fragenanzahl pro Thema:</label>
+		<input type="number" id="numAnzahlField">
+		<button id="btnGenerate">Generieren</button>
+		<button id="btnCopy">In Zwischenablage kopieren</button>
+		<button id="btnClear">Löschen</button>
+	</div>
+	<button onclick="topFunction()" id="scrollTop" title="Go to top">▲</button>
+	<script>
+		//JavaScript zum Ein- und Ausklappen des Inhalts
+		var coll = document.getElementsByClassName("collapsible");
+		var i;
+		
+		for (i = 0; i < coll.length; i++) {
+			coll[i].addEventListener("click", function() {
+				this.classList.toggle("active");
+				var content = this.nextElementSibling;
+				if (content.style.maxHeight) {
+					content.style.maxHeight = null;
+				} else {
+					content.style.maxHeight = content.scrollHeight + "px";
+				}
+			});
+		}		
+
+		
+		//Event Listener für den "Alle auswählen"-Button bei Thema
+		document.getElementById("btnSelectAllThema").addEventListener("click", function() {
+			//Alle Checkboxen auswählen
+			const checkboxes = document.querySelectorAll("#thema input[type='checkbox']");
+			checkboxes.forEach(function(checkbox) {
+				checkbox.checked = true;
+				toggleThema(checkbox.id, checkbox.dataset.details); //Thema auswählen
+			});
+		});
+		
+		//Event Listener für den "Alle abwählen"-Button bei Thema
+		document.getElementById("btnDeselectAllThema").addEventListener("click", function() {
+			//Alle Checkboxen abwählen und Details ausblenden
+			const checkboxes = document.querySelectorAll("#thema input[type='checkbox']");
+			checkboxes.forEach(function(checkbox) {
+				checkbox.checked = false;
+				toggleThema(checkbox.id, checkbox.dataset.details); //Details ausblenden
+			});
+		});
+		
+		//Funktion zum Anzeigen oder Ausblenden von Details basierend auf Checkbox-Zustand bei Thema
+		function toggleThema(checkboxId, themaText) {
+			const checkbox = document.getElementById(checkboxId);
+			const thema = document.createElement('li');
+		
+			if (checkbox.checked) {
+				thema.textContent = "";
+				container.appendChild(thema);
+			} else {
+				thema.remove();
+			}
+		}
+		
+		document.getElementById("checkboxVergangenheit").addEventListener("change", function() {
+			toggleThema("checkboxVergangenheit", "vergangenheitThema");
+		});
+		document.getElementById("checkboxGegenwart").addEventListener("change", function() {
+			toggleThema("checkboxGegenwart", "gegenwartThema");
+		});
+		document.getElementById("checkboxGefährten").addEventListener("change", function() {
+			toggleThema("checkboxGefährten", "gefährtenThema");
+		});
+		document.getElementById("checkboxTräume").addEventListener("change", function() {
+			toggleThema("checkboxTräume", "träumeThema");
+		});
+		document.getElementById("checkboxWelt").addEventListener("change", function() {
+			toggleThema("checkboxWelt", "weltThema");
+		});
+		document.getElementById("checkboxHypothetisches").addEventListener("change", function() {
+			toggleThema("checkboxHypothetisches", "hypothetischesthema");
+		});
+		
+		// //Überprüfen, ob mindestens eine Checkbox bei Beschreibung ausgewählt wurde
+		// const checkboxesBeschreibung = document.querySelectorAll("#beschreibung input[type='checkbox']");
+		// let isAnyCheckboxSelectedBeschreibung = false;
+		
+		// checkboxesBeschreibung.forEach(function(checkbox) {
+		// 	if (checkbox.checked) {
+		// 		isAnyCheckboxSelectedBeschreibung = true;
+		// 		return; //Wir können die Schleife vorzeitig verlassen, da mindestens eine Checkbox ausgewählt wurde
+		// 	}
+		// });
+		
+		// //Füge einen Zeilenumbruch hinzu, wenn mindestens eine Checkbox ausgewählt wurde
+		// const lineBreak = isAnyCheckboxSelectedBeschreibung ? "\n" : "";
+		
+		// //Prüft, ob das jeweilige Detail, das letzte Detail ist
+		// function isLastSelectedCheckbox(checkboxId) {
+		// 	const checkboxes = [
+		// 		"checkboxAutor", "checkboxAuflage", "checkboxSeitenzahl", "checkboxAlter", "checkboxGröße",
+		// 		"checkboxZustand", "checkboxBindung", "checkboxEinbandMaterial", "checkboxEinbandDetail",
+		// 		"checkboxTextQualität", "checkboxTextProduktion", "checkboxBilderAnzahl", "checkboxBilderGröße",
+		// 		"checkboxBilderStil", "checkboxBilderQualität"
+		// 	];
+		
+		// 	const lastSelectedIndex = checkboxes.findIndex(checkbox => checkbox === checkboxId);
+		// 	if (lastSelectedIndex === -1) {
+		// 		return false;
+		// 	}
+		
+		// 	for (let i = lastSelectedIndex + 1; i < checkboxes.length; i++) {
+		// 		if (document.getElementById(checkboxes[i]).checked) {
+		// 			return false;
+		// 		}
+		// 	}
+		
+		// 	return true;
+		// }
+		
+					
+			//Funktion, um einen zufälligen Text aus einem Array auszuwählen
+			function getRandomText(arr) {
+				const index = Math.floor(Math.random() * arr.length);
+				return arr[index];
+			}
+		
+			//Funktion, um einen zufälligen Text aus einem Array in einem Array auszuwählen
+			function getRandomElementFromArray(arr) {
+				return arr[Math.floor(Math.random() * arr.length)];
+			}
+
+				
+		//Bestimmt die Farbe des Einbandes
+		function generateFrageThemaVergangenheit() {
+			const themaVergangenheit = ["Wie hast Du Deine wichtigste Fähigkeit gelernt? Wer hat sie dir beigebracht? Warum ist diese Fähigkeit so wichtig?", "Wer ist der schwierigste Gegner, dem du je begegnet bist? Was hast du aus der/den Begegnung(en) mit ihm gelernt?", "Was war der schlimmste Fehler, den du als Abenteurer gemacht hast? Beeinflusst er dich heute noch?", "Was war das beste Essen, das du je gegessen hast? Mit wem hast du sie geteilt? Was hat es unvergesslich gemacht?", "Welche deiner Fähigkeiten hattest du am schwersten zu meistern? Wie und warum hast du während des Lernprozesses an dir gezweifelt? Was hat am Ende den Ausschlag gegeben?", "Welche deiner Narben findest du am coolsten? Welche Geschichte steckt dahinter?", "Wo hast du am längsten gewohnt? Was hat dich so lange dort gehalten? Würdest du gerne dorthin zurückkehren?", "Was ist die wichtigste Lektion, die du von einem guten Freund gelernt hast? Hast du diese Lektion in einem einzigen Ereignis oder über die Zeit gelernt?", "Was ist die wichtigste Lektion, die du von einem Familienmitglied gelernt hast? Hast du diese Lektion in einem einzigen Ereignis oder über die Zeit gelernt?", "Gibt es Erinnerungen an deine Vergangenheit, die du gerne loslassen würdest? Warum fällt dir das schwer?", "Was ist das schönste Kompliment, das du je bekommen hast? Von wem hast du es bekommen?", "Was war die schlimmste Beleidigung, die du je erlebt hast? Wie hast du darauf reagiert?", "Was war der schlimmste Job, den du je hattest? Was machte ihn so schlimm? Was hast du daraus gelernt?", "Was war ein Fehler, den du gemacht hast und der sich am Ende als vorteilhaft für dich herausgestellt hat? Hat dieser Fehler die Art und Weise verändert, wie du heute mit Problemen umgehst?", "Wer außerhalb deiner unmittelbaren Familie und deines Umfelds hatte den größten positiven Einfluss auf dein Leben? Wissen sie, dass sie dich beeinflusst haben?", "Wer war der Außenseiter in deiner Familie? Wie war dein Verhältnis zu ihm? Wenn du es warst, wer stand dir in deiner Familie am nächsten?", "Woran denkst du, wenn du das Wort \"Heimat\" hörst? Glaubst du, dass du jemals an diesen Ort zurückkehren wirst oder dass du diesen Ort jemals erreichen wirst? Und warum?", "Wann hast du zum letzten Mal vor jemandem geweint? Warum hast du geweint? Wie hat die Person reagiert?", "Was war das letzte Mal, dass du etwas ausprobiert hast, das dir unerwartet gut gefallen hat? Hat es dir geholfen, etwas anderes auszuprobieren?", "Welches Geheimnis hast du, das dir bisher zu peinlich war, um es zu erzählen? Ist es dir immer noch peinlich?", "Was ist die Veränderung, die du in deinem Leben erreicht hast und auf die du stolz bist? Wie wirkt sich diese Veränderung auf dein tägliches Leben aus?", "Was war dein erster Liebeskummer? Mit wem war es? Hast du schon einmal jemandem das Herz gebrochen?", "Wann bist du das letzte Mal betrogen oder hintergangen worden? Was hast du aus dieser negativen Erfahrung gelernt?", "Welcher Akt der Großzügigkeit hatte den größten Einfluss auf dein Leben? Hast du sie weitergegeben, und wenn nicht, wirst du es tun?", "Welches Verbrechen hast du begangen und hatte es Konsequenzen für dich?", "Was ist außer deinem Handwerkszeug ein persönlicher Gegenstand, den du bei dir trägst und der dir etwas bedeutet? Woher hast du ihn?", "Welche Person oder Gruppe hat dich zuerst dazu inspiriert, Abenteurer zu werden? Was war es an ihren Geschichten oder Taten, das dich fasziniert hat?", "Gibt es ein Artefakt oder einen Gegenstand aus deiner Vergangenheit, den du verloren hast und den du verzweifelt wiederfinden möchtest? Welche Bedeutung hat dieser Gegenstand für dich?", "Hast du jemals jemanden gerettet, der dir zuvor das Leben gerettet hat? Wie hat diese Verbindung eure Beziehung beeinflusst?", "Wie bist du zu deinem ersten Abenteuer gekommen? War es eine bewusste Entscheidung oder wurdest du hineingezogen?", "Gibt es eine Person aus deiner Vergangenheit, die du gerne wiedersehen würdest? Warum hast du sie verloren und was würdest du sagen, wenn du die Chance hättest?", "Was war der größte Konflikt, den du mit deinen Eltern oder Vormündern hattest? Hat sich eure Beziehung seitdem verbessert oder verschlechtert?", "Welche Lektion hast du aus einem tragischen Ereignis in deiner Vergangenheit gelernt? Wie hat es deine Perspektive auf das Leben verändert?", "Welche Fähigkeit oder Eigenschaft deiner Familie oder deiner Herkunft schätzt du am meisten? Wie hat sie dich geprägt?", "Hast du jemals jemandem, den du bewundert hast, nachgeeifert? Wie hat das deine Entwicklung beeinflusst?", "Welches war dein größter Sieg als Kind oder Jugendlicher? Wie hat er dich motiviert, Abenteurer zu werden?", "Gab es eine Zeit, in der du dich in einem Kampf oder einer gefährlichen Situation völlig überfordert gefühlt hast? Wie hast du dich daraus befreit?", "Welches ist das wertvollste Geschenk, das du je erhalten hast? Hat es eine symbolische Bedeutung für dich?", "Warst du jemals in einer romantischen Beziehung, die tragisch geendet hat? Wie hat das deine Einstellung zur Liebe beeinflusst?", "Gibt es eine bestimmte Person aus deiner Vergangenheit, die du als Mentor betrachtest? Was hast du von ihr gelernt?", "Wurde dir jemals eine Gelegenheit oder eine Belohnung verwehrt, die du wirklich wolltest? Wie bist du damit umgegangen?", "Welches war dein liebster Rückzugsort, wenn du dich zurückziehen oder nachdenken wolltest?", "Hast du eine Phobie oder eine tiefe Angst, die auf eine bestimmte Erfahrung in deiner Vergangenheit zurückzuführen ist?", "Gab es eine Zeit, in der du für etwas beschuldigt wurdest, das du nicht getan hast? Wie hast du versucht, deine Unschuld zu beweisen?", "Welche Tradition oder welches Ritual hast du als Kind am meisten gefürchtet und warum?", "Welche war die gefährlichste Mutprobe, der du als Jugendlicher begegnet bist? Hast du sie gemeistert oder hattest du Hilfe?", "Welche Erinnerung an deinen ersten Tag als Abenteurer ist dir am lebhaftesten im Gedächtnis geblieben? Was hast du dabei empfunden?", "Hast du jemals in einer Gruppe oder Clique in deiner Jugend mitgemacht? Wie hast du dich darin eingefügt oder wie bist du herausgestochen?", "Welches war dein Lieblingsspiel oder deine Lieblingsbeschäftigung als Kind? Hat es eine Parallele zu deinem jetzigen Leben als Abenteurer?", "Hast du jemals eine enge Freundschaft verloren? Wie ist das passiert und wie gehst du mit diesem Verlust um?"];
+		
+			const randomIndex = Math.floor(Math.random() * themaVergangenheit.length);
+			const selectedThemaVergangenheit = themaVergangenheit[randomIndex];
+		
+			return selectedThemaVergangenheit;
+		}
+							
+		function generateFrageThemaGegenwart() {
+			const themaGegenwart = ["Was ist deiner Meinung nach dein nutzlosestes Talent? Warum ist es deiner Meinung nach nutzlos?", "Welche Befriedigung, abgesehen von Reichtum und Ruhm, hast du im Leben eines Abenteurers gefunden? Welche Art von Belohnung würdest du dir öfter wünschen?", "Auf welche Aspekte deines Alltags freust du dich am meisten? Warum gefallen dir diese Aspekte so gut?", "Was ist dein Lieblingsärgernis, das dich sofort ärgert? Wie reagierst du darauf? Wie würdest du lieber reagieren?", "Glaubst du eher an das Schicksal oder an den freien Willen und warum?", "Siehst du dich selbst als Optimisten oder Pessimisten? Wie beeinflusst dich diese Einstellung, wenn du Risiken eingehst?", "Was gibt es an dir, von dem du sicher bist, dass es sich nie ändern wird? Hast du es schon einmal auf die Probe gestellt?", "Wirst du am Ende deines Lebens eher stolz auf deine Leistungen oder auf deine Integrität sein? Was lässt dich so denken?", "Welchen Aberglauben hast du? Fühlst du dich verpflichtet, ihn anderen aufzuzwingen?", "Was ist deiner Meinung nach wertvoller? Wissenschaft oder Kunst? Und warum? Beschreibe eine Welt ohne deine Wahl in ihr.", "Was ist für dich wichtiger: Rache oder Vergebung? Wie wird dein Alltag von diesem Wert beeinflusst?", "Welche Kunstform spricht dich am meisten an? Wie genießt du sie am liebsten, wenn du sie erlebst?", "Was ist ein wichtiger Gegenstand in deinem Besitz, der neu ist?", "Was ist ein wichtiger Gegenstand in deinem Besitz, der dir vererbt wurde?", "Was ist ein wichtiger Gegenstand in deinem Besitz, den du selber hergestellt hast?", "Gegen welche Art von Person könntest du niemals deine Hand erheben und warum?", "Welcher Art von Person könntest du niemals vergeben und warum?", "Welche Art von Gesetz darf deiner Meinung nach gebrochen werden?", "Welche Art von Gesetz darf deiner Meinung nach niemals gebrochen werden?", "Welche Art zu reisen gefällt dir am besten und warum?", "Hast du schon einmal über die Möglichkeit eines Lebens nach dem Tod nachgedacht? Beeinflussen die Überzeugungen, die du über das Leben nach dem Tod hast, deine Entscheidungen? Wie hängt das mit deinen spirituellen oder religiösen Überzeugungen zusammen?", "Welche Eigenschaft bewunderst du am meisten an anderen Personen und glaubst du, dass du diese Eigenschaft besitzt?", "Findest du es schwieriger, falsch zu liegen oder etwas nicht zu wissen und warum?", "Was ist etwas, worauf du stolz bist, aber noch nie jemandem erzählt hast? Gibt es einen Grund, warum du es für dich behalten hast?", "Hast du Schwächen, die du akzeptiert oder angenommen hast? Was hat dich dazu gebracht, dass du diese Schwächen akzeptiert hast?", "Hast du Meinungen oder Ansichten, die du nicht mit anderen zu teilen wagst? Was hält dich zurück?", "Was wäre eine Sache, die du dir wünschst, obwohl du weißt, dass es wahrscheinlich nie passieren wird? Warum ist es so unwahrscheinlich?", "Welche Tage oder Zeiten im Jahr sind für dich wichtig? Wie gehst du damit um oder wie feierst du sie?", "Welche Gewohnheit oder Tätigkeit bringt dir den meisten inneren Frieden oder Ruhe in deinem Alltag?", "Was ist dein bevorzugter Weg, um dich zu entspannen oder Stress abzubauen, wenn du nicht auf Abenteuer gehst?", "Gibt es eine bestimmte Fertigkeit oder Fähigkeit, die du gerade versuchst zu verbessern? Warum ist dir das wichtig?", "Wie gehst du mit den täglichen Gefahren und Risiken eines Abenteurerlebens um? Bist du eher vorsichtig oder risikobereit?", "Welche Art von Musik oder Klängen inspiriert dich oder beeinflusst deine Stimmung positiv?", "Welche aktuellen Ziele oder Pläne hast du für deine Abenteurerkarriere? Was treibt dich an, diese Ziele zu verfolgen?", "Welche Veränderungen oder Weiterentwicklungen in deinen Fähigkeiten oder Eigenschaften sind dir in letzter Zeit aufgefallen?", "Gibt es eine momentane Herausforderung oder Schwierigkeit, der du dich stellst? Wie gehst du damit um?", "Welche Aktivität oder Aufgabe lenkt dich am besten von den Abenteuern ab? Was zieht dich an dieser Aktivität an und wie hilft sie dir, dich zu erholen?", "Gibt es eine persönliche Grenze, die du kürzlich überschritten hast? Wie hat das deine Sicht auf dich selbst verändert?", "Welche positiven oder negativen Eigenschaften bewunderst oder kritisierst du an dir selbst?", "Welche deiner Gewohnheiten oder Verhaltensweisen stören dich und warum?", "Welche aktuellen Fragen oder Dilemmata beschäftigen dein Gewissen? Welche Seiten oder Lösungsansätze erwägst du, um diese Fragen zu klären?", "Welche Art von Individuen zieht dich am meisten an? Welche eher nicht?", "Welche besonderen Rituale oder Praktiken führst du täglich aus, um dich zu zentrieren?", "Welche Art von Umwelt oder Landschaft beruhigt dich am meisten und warum?", "Welche besonderen Gegenstände oder Symbole tragen für dich eine wichtige Bedeutung? Gibt es eine spezielle Geschichte oder Erinnerung, die mit einem dieser Gegenstände verbunden ist?", "Welche Art von Risiken oder Herausforderungen scheust du dich meistern und warum?", "Welche Art von Emotionen versuchst du am meisten zu kontrollieren? Wie gelingt es dir, diese Emotionen zu kontrollieren, und gibt es Situationen, in denen sie trotzdem durchbrechen?", "Welche Art von persönlicher Weiterentwicklung oder Wachstum strebst du an? Welche konkreten Schritte unternimmst du, um diese Weiterentwicklung zu fördern?", "Welche besonderen Gedanken oder Ideen beschäftigen deinen Geist? Gibt es eine bestimmte Herausforderung oder Fragestellung, die dich dazu antreibt, darüber nachzudenken?", "Welche Art von Schönheit oder Anmut zieh dich am meisten an und warum?"];
+		
+			const randomIndex = Math.floor(Math.random() * themaGegenwart.length);
+			const selectedThemaGegenwart = themaGegenwart[randomIndex];
+		
+			return selectedThemaGegenwart;
+		}
+		
+		//Funktion zum Generieren und Anzeigen der Sätze
+		btnGenerate.addEventListener('click', (event) => {
+			const container = document.getElementById('container');
+			container.querySelectorAll('li').forEach((li) => li.remove());
+			const numAnzahl = parseInt(numAnzahlField.value);
+		
+			for (let i = 0; i < numAnzahl; i++) {
+				const themaVergangenheit = generateFrageThemaVergangenheit();
+				const themaGegenwart = generateFrageThemaGegenwart();
+				const li = document.createElement('li');
+		
+				const output = `${document.getElementById("checkboxVergangenheit").checked ? themaVergangenheit + "\n\n":''}${document.getElementById("checkboxGegenwart").checked ? themaGegenwart + "\n\n":''}`;
+				li.innerHTML = output;
+				container.appendChild(li);
+			}
+		});
+		
+		//Erstellt die Funktion zum Kopieren der generierten Ergebnisse in die Zwischenablage
+		function copyToClipboard(text) {
+			const tempElement = document.createElement('textarea');
+			tempElement.value = text;
+			document.body.appendChild(tempElement);
+			tempElement.select();
+			document.execCommand('copy');
+			document.body.removeChild(tempElement);
+		}
+		
+		//Fügt einen Event Listener hinzu, um die generierten Ergebnisse in die Zwischenablage zu kopieren
+		btnCopy.addEventListener('click', (event) => {
+			event.preventDefault();
+			const container = document.getElementById('container');
+			const generatedBooktitles = container.querySelectorAll('li');
+		
+			if (generatedBooktitles.length > 0) {
+				const namesList = Array.from(generatedBooktitles).map((li) => li.textContent).join('\n');
+				copyToClipboard(namesList);
+				alert('Die Liste wurde in die Zwischenablage kopiert.');
+			} else {
+				alert('Die Liste ist leer.');
+			}
+		});
+		
+		//Entfernt bisher generierte Resulate
+		btnClear.addEventListener('click', (event) => {
+			event.preventDefault();
+			const container = document.getElementById('container');
+			container.querySelectorAll('li').forEach((li) => li.remove());
+		});
+		
+		//Fügt einen Container für die Ergebnisse hinzu
+		const container = document.createElement('ul');
+		container.id = 'container';
+		document.body.appendChild(container); //This is just a sample script. Paste your real code (javascript or HTML) here.
+		
+		
+	</script>
+	<script>
+		//Get the button:
+		let mybutton = document.getElementById("scrollTop");
+		
+		//When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		
+		function scrollFunction() {
+		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+		mybutton.style.display = "block";
+		} else {
+		mybutton.style.display = "none";
+		}
+		}
+		
+		//When the user clicks on the button, scroll to the top of the document
+		function topFunction() {
+		document.body.scrollTop = 0; //For Safari
+		document.documentElement.scrollTop = 0; //For Chrome, Firefox, IE and Opera
+		}
+		
+	</script>
+   </body>
+  </html>
+  
